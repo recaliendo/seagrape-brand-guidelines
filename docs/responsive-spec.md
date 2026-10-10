@@ -45,7 +45,7 @@ Body text never drops below 16px. Headings use `text-wrap: balance`; the hero h1
 
 | Image | Rule |
 |---|---|
-| Hero illustration | 4:5 arch, `max-width: min(32rem, 100%)`: 273px wide at 320, 384px at 768 (stacked, capped), 386–571px from 1024 to 1920. SVG scales without quality loss. |
+| Hero illustration | 4:5 arch. Stacked (below 896px): full width, capped at 24rem on tablets. Side by side: width = the smaller of 32rem, the column, or (screen height − 10rem) × 0.8, so the whole hero fits on the first screen of 1280×720, 1366×768 and 1536×864 laptops. SVG scales without quality loss. |
 | Cards, gallery, services | 4:3, `object-fit: cover`, `width`/`height` attributes set (no layout shift) |
 | Plant cards | 3:2 |
 | Robert's portrait | 4:5, max 28rem, sticky beside the story from md up |

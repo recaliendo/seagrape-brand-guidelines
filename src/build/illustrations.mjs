@@ -126,14 +126,14 @@ const scenes = {
       <rect x="0" y="740" width="800" height="260" fill="${p.sand}"/>
       <path d="M380 1000 L470 740 L560 740 L700 1000Z" fill="${p.stucco}"/>
       ${mound(120, 790, 260, 120, p.leaf8)}
-      ${fan(110, 800, 150, p.leaf7, 15)}
+      ${fan(165, 800, 140, p.leaf7, 15)}
       ${blades(300, 800, 9, 150, p.sage5, r)}
       ${plumes(300, 790, 110, 180, p.blush, r)}
       ${pot(640, 780, 120, 130, p.terra)}
       ${fan(640, 640, 120, p.leaf8, 11)}
-      ${croton(760, 820, 150, [p.terra, p.gold, p.plum, p.leaf7], r)}
-      ${roundLeaf(60, 900, 60, p.leaf7, p.terra)}${roundLeaf(160, 930, 70, p.leaf8, p.terra)}${roundLeaf(260, 950, 55, p.sage5, p.terra)}
-      ${roundLeaf(740, 940, 64, p.leaf8, p.terra)}${roundLeaf(820, 900, 60, p.leaf7, p.terra)}
+      ${croton(520, 840, 115, [p.terra, p.gold, p.plum, p.leaf7], r)}
+      ${roundLeaf(75, 895, 52, p.leaf7, p.terra)}${roundLeaf(175, 918, 58, p.leaf8, p.terra)}${roundLeaf(280, 935, 46, p.sage5, p.terra)}
+      ${roundLeaf(655, 925, 54, p.leaf8, p.terra)}${roundLeaf(738, 895, 50, p.leaf7, p.terra)}
     `);
   },
   // Stand-in for the owner's portrait: foliage framing an empty, softly lit garden. No figure, so it's never mistaken for a photo of Robert.
