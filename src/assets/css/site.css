@@ -44,6 +44,10 @@ a:hover { color: var(--color-leaf-900); }
 
 /* ---------- Layout ---------- */
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+/* Large screens: widen the frame, then scale the whole rem-based system, so nothing is stranded in empty space. */
+@media (min-width: 90em) { :root { --container: 80rem; } }
+@media (min-width: 120em) { html { font-size: 112.5%; } }
+@media (min-width: 150em) { html { font-size: 125%; } }
 .section { padding-block: var(--section-space); }
 .section--ivory { background: var(--color-ivory); }
 .section--sage { background: var(--color-sage-100); }
@@ -127,6 +131,7 @@ a:hover { color: var(--color-leaf-900); }
 .site-nav { display: flex; align-items: center; gap: var(--space-6); }
 .nav-list { display: flex; gap: var(--space-5); list-style: none; margin: 0; padding: 0; }
 .nav-list a {
+  white-space: nowrap;
   display: inline-block; padding-block: var(--space-2);
   color: var(--color-ink); text-decoration: none; font-weight: 500; font-size: 0.975rem;
   border-bottom: 1.5px solid transparent;
@@ -135,7 +140,7 @@ a:hover { color: var(--color-leaf-900); }
 .nav-list a[aria-current="page"] { color: var(--color-leaf-900); border-bottom-color: var(--color-terracotta); }
 .nav-cta { min-height: 2.75rem; padding: 0.6rem 1.2rem; font-size: 0.9375rem; }
 
-@media (max-width: 56em) {
+@media (max-width: 59.99em) {
   .js .nav-toggle { display: inline-flex; }
   .js .site-nav {
     position: absolute; inset: 100% 0 auto 0;
@@ -168,7 +173,8 @@ a:hover { color: var(--color-leaf-900); }
 .hero-art { position: relative; }
 .arch { border-radius: var(--radius-arch); overflow: hidden; background: var(--color-sand); }
 .arch img { width: 100%; height: 100%; object-fit: cover; }
-.hero-art .arch { aspect-ratio: 4 / 5; max-width: 30rem; margin-inline: auto; }
+.hero-art .arch { aspect-ratio: 4 / 5; max-width: min(32rem, 100%); margin-inline: auto; }
+@media (min-width: 40em) and (max-width: 55.99em) { .hero-art .arch { max-width: 24rem; } }
 .hero-art::after {
   content: ""; position: absolute; inset: auto auto -1rem -1rem; width: 7rem; height: 7rem;
   border-radius: 50%; border: 1px solid var(--color-terracotta); opacity: 0.6; pointer-events: none;
@@ -227,7 +233,9 @@ a:hover { color: var(--color-leaf-900); }
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: var(--space-5); }
 .grid > * { min-width: 0; }
-.grid--3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+.grid--3 { grid-template-columns: 1fr; }
+@media (min-width: 40em) { .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64em) { .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .grid--2 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: var(--space-6); }
 
 .card {
@@ -377,7 +385,9 @@ a.card:hover h3 { color: var(--color-leaf-700); }
 .sources a { color: inherit; }
 
 /* Conditions grid (plant guide) */
-.conditions { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
+.conditions { display: grid; gap: var(--space-5); grid-template-columns: 1fr; }
+@media (min-width: 40em) { .conditions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64em) { .conditions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .condition { padding: var(--space-5); border-radius: var(--radius-md); background: var(--color-white); border: 1px solid var(--color-stone); display: grid; gap: var(--space-2); align-content: start; }
 .condition h3 { font-size: 1.2rem; }
 .condition p { color: var(--color-ink-muted); font-size: var(--text-sm); }
@@ -486,7 +496,8 @@ a.card:hover h3 { color: var(--color-leaf-700); }
 .footer-brand .brand { color: var(--color-on-dark); }
 .footer-brand .brand-name small { color: #AFC0B3; }
 .site-footer h2 { font: 600 var(--text-xs)/1 var(--font-body); letter-spacing: var(--tracking-label); text-transform: uppercase; color: #AFC0B3; margin-bottom: var(--space-4); }
-.footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.footer-links a { display: inline-block; padding-block: 0.25rem; }
 .footer-links a { text-decoration: none; }
 .footer-links a:hover { text-decoration: underline; }
 .footer-bottom { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgb(246 242 234 / 0.14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); font-size: var(--text-sm); color: #AFC0B3; }
