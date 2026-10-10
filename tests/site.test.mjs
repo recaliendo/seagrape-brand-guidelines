@@ -132,6 +132,7 @@ test("brand text colors meet WCAG AA contrast", async () => {
     ["color-ink-muted", "color-sage-100"], ["color-leaf-700", "color-canvas"], ["color-white", "color-leaf-700"],
     ["color-terracotta-text", "color-canvas"], ["color-terracotta-text", "color-ivory"], ["color-on-dark", "color-leaf-900"],
     ["color-error", "color-error-bg"], ["color-leaf-900", "color-sand"],
+    ["color-blush", "color-leaf-900"], ["color-leaf-900", "color-blush"],
   ];
   for (const [fg, bg] of pairs) {
     const r = ratio(t[fg], t[bg]);
