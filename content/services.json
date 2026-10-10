@@ -1,5 +1,5 @@
 {
-  "_help": "Services shown on the Home and Services & Projects pages, in this order. 'illustration' names a built-in drawing; replace it with a 'photo' object ({\"src\": \"/img/photos/file.jpg\", \"alt\": \"...\", \"width\": 1200, \"height\": 900}) once you have your own pictures.",
+  "_help": "Services shown on the Home and Services & Projects pages, in this order. 'photoFrom' names a content/gallery.json item whose photo (with its caption and credit) illustrates the service; replace it with your own 'photo' object ({\"src\", \"srcSmall\", \"width\", \"height\", \"alt\"}) once you have project photos.",
   "items": [
     {
       "id": "landscape-design",
@@ -7,7 +7,7 @@
       "summary": "A plan shaped around your home, your style and how you use your yard.",
       "description": "I start by walking the property with you and listening to what you want: more privacy, less lawn to mow, a garden that feels calm, or color by the front door. Then I sketch a layout and plant palette that fits the light, soil and space you actually have.",
       "goodFor": "New homes, bare yards, or anyone starting fresh.",
-      "illustration": "plan"
+      "photoFrom": "classic-elegant"
     },
     {
       "id": "garden-refresh",
@@ -15,7 +15,7 @@
       "summary": "New life for tired beds without starting over.",
       "description": "Keep what's working, replace what isn't. I clean up overgrown beds, edit out struggling plants, add fresh layers of texture and color, and finish with clean bed lines and mulch.",
       "goodFor": "Established yards that have lost their shape.",
-      "illustration": "refresh"
+      "photoFrom": "lush-south-florida"
     },
     {
       "id": "tropical-landscaping",
@@ -23,7 +23,7 @@
       "summary": "Lush, layered foliage that looks right in South Florida.",
       "description": "Bold leaves, palms and colorful accents, arranged so the garden feels full without becoming a jungle you can't maintain. I like pairing tropical ornamentals with tough natives so the planting holds up through dry spring months and summer storms.",
       "goodFor": "Pool areas, patios and entries that need presence.",
-      "illustration": "modern-tropical"
+      "photoFrom": "modern-tropical"
     },
     {
       "id": "plant-installation",
@@ -31,7 +31,7 @@
       "summary": "The right plant in the right spot, planted properly.",
       "description": "I'll help you choose plants for your sun, shade, drainage and salt exposure, then plant them at the right depth and spacing so they have room to grow. You'll get simple care notes for the first months while they settle in.",
       "goodFor": "Filling gaps, adding privacy, or trying something new.",
-      "illustration": "planting"
+      "photoFrom": "small-yard-path"
     },
     {
       "id": "outdoor-enhancements",
@@ -39,7 +39,7 @@
       "summary": "Small changes that make the yard easier to enjoy.",
       "description": "Stepping-stone paths, planters, gravel or mulch areas, and planting that frames a seating spot or softens a fence. The goal is a yard that's pleasant to walk through and sit in, not just look at.",
       "goodFor": "Backyards that feel unfinished or underused.",
-      "illustration": "enhance"
+      "photoFrom": "entry-arbor"
     },
     {
       "id": "garden-improvements",
@@ -47,7 +47,7 @@
       "summary": "One corner, one entry, one idea. Small projects are welcome.",
       "description": "Not every project is a full redesign. A pair of planters by the door, a butterfly corner, a courtyard refresh or a privacy screen along one side can make a big difference. Tell me the idea and I'll help you shape it.",
       "goodFor": "Entryways, courtyards and compact spaces.",
-      "illustration": "small-space"
+      "photoFrom": "small-courtyard"
     }
   ]
 }

@@ -43,7 +43,7 @@ In short: Robert, a down-to-earth Wisconsin transplant who loves South Florida's
 
 ## Owner introduction
 
-The Home page's "Meet Robert" section is the brand's personal center. Its text lives in [`content/owner.json`](../content/owner.json) and covers only facts Robert provided. Until a real photo exists it shows an illustrated garden placeholder captioned "Robert — Owner & Landscaping Enthusiast". Never use a stock photo of a person to stand in for him.
+The Home page's "Meet Robert" section is the brand's personal center. Its text lives in [`content/owner.json`](../content/owner.json) and covers only facts Robert provided. Until a real photo exists it shows a sand panel with a fine-line seagrape leaf, captioned "Robert — Owner & Landscaping Enthusiast". Never use a stock photo of a person to stand in for him.
 
 ## Visual identity
 
@@ -62,11 +62,12 @@ The full token list lives in [`src/assets/css/tokens.css`](../src/assets/css/tok
 | Deep foliage | `--color-leaf-900` | `#1F3529` | Headings, footer, CTA band |
 | Body text | `--color-ink` | `#26302A` | Paragraphs |
 | Secondary text | `--color-ink-muted` | `#56615A` | Ledes, captions |
-| Accent | `--color-terracotta` | `#B8694C` | Decorative rules, step numerals, illustration only |
-| Accent text | `--color-terracotta-text` | `#974F37` | Eyebrow labels, required markers |
-| Wood | `--color-wood` | `#9C7A5B` | Illustration, non-native badge |
+| Accent on dark | `--color-limestone` | `#E4D8C3` | Hero italic and hero button on deep green (9.3:1) |
+| Hover accent | `--color-terracotta` | `#B8694C` | Link hover underline only |
+| Reserved | `--color-terracotta-text` | `#974F37` | Not used for UI labels |
+| Wood | `--color-wood` | `#9C7A5B` | Reserved |
 
-Rules: keep pages mostly light (canvas, ivory, sage). Use deep foliage green for one strong moment per page (the CTA band and footer). Terracotta is a spice, never a background. No black backgrounds, corporate blue, saturated tropical colors or harsh gradients.
+Rules: keep pages mostly light (canvas, one ivory section per page). Deep foliage green is used for the hero and footer only; the closing invitation is a light sand band. Limestone is the only accent on green; terracotta appears only as a link-hover underline. No black backgrounds, corporate blue, saturated colors, gradients, glows or decorative rings.
 
 ### Typography
 

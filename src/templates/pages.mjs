@@ -6,11 +6,10 @@ import { PROJECT_TYPES, BUDGETS, TIMEFRAMES, CONTACT_METHODS, LIMITS } from "../
 const nativeBadge = (status) =>
   `<span class="badge${/not native/i.test(status) ? " badge--exotic" : ""}">${esc(status)}</span>`;
 
-const serviceCard = (s, art) => `
-<a class="card" href="/services-projects/#${esc(s.id)}">
-  <div class="card-media">${media(s, { alt: "", art })}</div>
-  <div class="card-body"><h3>${esc(s.title)}</h3><p>${esc(s.summary)}</p></div>
-</a>`;
+const serviceIndex = (items) => `
+<ul class="service-index">${items.map((s) => `
+  <li><a href="/services-projects/#${esc(s.id)}"><span class="si-title">${esc(s.title)}</span><span class="si-text">${esc(s.summary)}</span></a></li>`).join("")}
+</ul>`;
 
 // ---------------------------------------------------------------- Gallery
 export const KIND_LABELS = { inspiration: "Landscape design inspiration", project: "Completed project" };
@@ -21,9 +20,16 @@ const creditLine = (c) =>
     ? `<p class="credit">Photo: ${esc(c.author)} · <a href="${esc(c.licenseUrl)}" rel="license noopener">${esc(c.license)}</a> · <a href="${esc(c.sourceUrl)}" rel="noopener">${esc(c.source)}</a></p>`
     : "";
 
+/** A service row's photo: an inspiration photo from the gallery (photoFrom), captioned and credited, or its own photo. */
+function serviceMedia(s, gallery, art) {
+  const g = s.photoFrom && gallery.items.find((x) => x.id === s.photoFrom);
+  const item = g || s;
+  return `<figure class="service-media">${media(item, { art, alt: g ? g.photo.alt : s.photo?.alt ?? "", sizes: "(min-width: 56em) 45vw, 100vw" })}${g ? `<figcaption>Inspiration · ${esc(g.place || g.title)} · Photo: ${esc(g.credit.author)}, <a href="${esc(g.credit.licenseUrl)}" rel="license noopener">${esc(g.credit.license)}</a></figcaption>` : ""}</figure>`;
+}
+
 const galleryCard = (g, art) => `
 <figure class="card gallery-card" id="gallery-${esc(g.id)}">
-  <div class="card-media">${media(g, { art, sizes: GALLERY_SIZES })}<span class="tag">${KIND_LABELS[g.kind]}</span></div>
+  <div class="card-media">${media(g, { art, sizes: GALLERY_SIZES })}</div>
   <figcaption class="card-body">
     <span class="card-eyebrow">${esc(g.category)}</span>
     <h3>${esc(g.title)}</h3>
@@ -82,7 +88,6 @@ export function reviewsSection({ items = [], googleReviewUrl = "" } = {}) {
 <section class="section" aria-labelledby="reviews-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">In their words</span>
       <h2 id="reviews-title">Kind words from our customers</h2>
     </div>
     <div class="reviews">${items.map(reviewCard).join("")}</div>
@@ -93,7 +98,7 @@ export function reviewsSection({ items = [], googleReviewUrl = "" } = {}) {
 
 const plantCard = (p, art, { compact = false } = {}) => `
 <article class="card plant-card" id="${esc(p.id)}">
-  <div class="card-media">${media(p, { alt: "", art })}</div>
+  ${p.photo?.src ? `<div class="card-media">${media(p, { art, sizes: GALLERY_SIZES })}</div>` : ""}
   <div class="card-body">
     ${nativeBadge(p.native)}
     <h3>${esc(p.name)}</h3>
@@ -114,6 +119,7 @@ const plantCard = (p, art, { compact = false } = {}) => `
       </dl>
       <p class="sources">Sources: ${p.sources.map((s) => `<a href="${esc(s.url)}" rel="noopener">${esc(s.label)}</a>`).join("; ")}</p>
     </details>`}
+    ${creditLine(p.photoCredit)}
   </div>
 </article>`;
 
@@ -129,7 +135,7 @@ export function ownerSection(owner, art) {
   const hasPhoto = Boolean(owner.photo?.src);
   const picture = hasPhoto
     ? media({ photo: owner.photo }, { sizes: "(min-width: 56em) 440px, 100vw" })
-    : media({ illustration: "portrait-placeholder" }, { alt: "", art });
+    : `<svg class="line-leaf" viewBox="0 0 120 120" width="96" height="96" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M60 14c26 0 42 20 42 44s-19 46-42 46-42-20-42-44c0-14 6-26 16-34 7-6 15-12 26-12z"/><path d="M60 104V38"/><path d="M60 80l-20-16M60 80l20-16M60 60l-15-12M60 60l15-12"/></svg>`;
   const paras = (list) => list.map((p) => `<p>${esc(p)}</p>`).join("");
   return `
 <section class="section section--ivory owner" id="${ownerAnchor(owner)}" aria-labelledby="owner-title">
@@ -139,7 +145,6 @@ export function ownerSection(owner, art) {
       <figcaption class="portrait-caption">${esc(owner.name)} — ${esc(owner.role)}</figcaption>
     </figure>
     <div class="owner-copy">
-      <span class="eyebrow">${esc(owner.eyebrow)}</span>
       <h2 id="owner-title">${esc(owner.headline)}</h2>
       <p class="owner-greeting">${esc(owner.greeting)}</p>
       <div class="owner-story">${paras(owner.intro)}</div>
@@ -157,13 +162,12 @@ export function ownerSection(owner, art) {
 
 // ---------------------------------------------------------------- Home
 export function home({ site, services, gallery, plants, reviews, owner, art }) {
-  const featured = plants.items.filter((p) => p.featured).slice(0, 3);
   return {
     path: "/",
     title: "Landscape design in Broward County, FL",
     description: `${site.name} is a small, owner-operated landscape design studio in Broward County, Florida. Personalized garden design, tropical landscaping and plants chosen for South Florida.`,
     schema: true,
-    preload: "/img/art/hero.svg",
+    preload: "/img/inspiration/hero-bonnet-house-640.webp",
     body: `
 <section class="hero">
   <div class="container hero-grid">
@@ -173,13 +177,14 @@ export function home({ site, services, gallery, plants, reviews, owner, art }) {
       <p class="lede">Beautiful landscaping starts with understanding your space and what you'd love it to become. I listen first, then help create a garden that suits your home, your style and the way South Florida grows.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="${CTA_HREF}">Start Your Project ${icons.arrow}</a>
-        <a class="btn btn-secondary" href="/services-projects/#inspiration">Explore Design Ideas</a>
+        <a class="text-link text-link--light" href="/services-projects/#inspiration">See design ideas ${icons.arrow}</a>
       </div>
       <ul class="hero-note"><li>Owner-operated</li><li>Small and large projects welcome</li><li>South Florida plant know-how</li></ul>
     </div>
-    <div class="hero-art">
-      <div class="arch">${media({ illustration: "hero" }, { alt: "Illustration of a South Florida entry garden with a sabal palm, stucco wall and layered tropical plants", eager: true, art })}</div>
-    </div>
+    <figure class="hero-photo">
+      <img src="/img/inspiration/hero-bonnet-house-640.webp" srcset="/img/inspiration/hero-bonnet-house-400.webp 400w, /img/inspiration/hero-bonnet-house-640.webp 640w" sizes="(min-width: 56em) 30rem, 90vw" width="640" height="800" alt="Palms and drought-tolerant plants set in pale sand in a sunny garden" fetchpriority="high" decoding="async">
+      <figcaption>Inspiration · Bonnet House, Fort Lauderdale · Photo: Leonard J. DeFrancisci, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener">CC BY-SA 3.0</a></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -188,11 +193,10 @@ ${ownerSection(owner, art)}
 <section class="section" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Services</span>
       <h2 id="services-title">Landscaping services, shaped to your project</h2>
       <p class="lede">From a single entry bed to a full yard, every project gets the same care and attention.</p>
     </div>
-    <div class="grid grid--3">${services.items.map((s) => serviceCard(s, art)).join("")}</div>
+    ${serviceIndex(services.items)}
     <div class="section-foot"><a class="text-link" href="/services-projects/">See all services ${icons.arrow}</a></div>
   </div>
 </section>
@@ -200,19 +204,17 @@ ${ownerSection(owner, art)}
 <section class="section section--sage" aria-labelledby="styles-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Design inspiration</span>
       <h2 id="styles-title">Find the style that feels like home</h2>
       <p class="lede">There's no single way to create a beautiful landscape. Some spaces call for clean, simple greenery, while others come alive with layers of tropical color.</p>
     </div>
     ${inspirationMosaic(gallery.items.filter((g) => g.featured).slice(0, 4), art)}
-    <div class="section-foot"><a class="btn btn-secondary" href="/services-projects/#inspiration">Explore the inspiration gallery ${icons.arrow}</a></div>
+    <div class="section-foot"><a class="text-link" href="/services-projects/#inspiration">Explore the inspiration gallery ${icons.arrow}</a></div>
   </div>
 </section>
 
 <section class="section" aria-labelledby="approach-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">My approach</span>
       <h2 id="approach-title">How we work together</h2>
       <p class="lede">Every project is different, so we'll talk through what each step looks like for yours.</p>
     </div>
@@ -222,20 +224,10 @@ ${ownerSection(owner, art)}
       <li><h3>Create a personalized plan</h3><p>I suggest a layout, plants and materials that fit your style and budget, and we adjust until it feels right.</p></li>
       <li><h3>Bring your landscape to life</h3><p>I prepare the beds, plant with care, and show you how to help everything settle in.</p></li>
     </ol>
+    <div class="section-foot"><a class="text-link" href="/south-florida-plants/">Curious what grows well here? Browse the South Florida plant guide ${icons.arrow}</a></div>
   </div>
 </section>
 
-<section class="section section--ivory" aria-labelledby="plants-title">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">South Florida plants</span>
-      <h2 id="plants-title">Plants that thrive in Broward</h2>
-      <p class="lede">South Florida gives us some wonderful planting options. Here are a few I keep coming back to, from the garden guide.</p>
-    </div>
-    <div class="grid grid--3">${featured.map((p) => plantCard(p, art, { compact: true })).join("")}</div>
-    <div class="section-foot"><a class="text-link" href="/south-florida-plants/">Visit the South Florida plant guide ${icons.arrow}</a></div>
-  </div>
-</section>
 ${reviewsSection(reviews)}
 ${ctaBand()}`,
   };
@@ -266,9 +258,9 @@ export function servicesProjects({ site, services, gallery, art }) {
         .map(
           (s) => `
       <article class="service" id="${esc(s.id)}">
-        <div class="service-media">${media(s, { alt: "", art })}</div>
+        ${serviceMedia(s, gallery, art)}
         <div class="service-copy">
-          <h3 style="font-size:var(--text-2xl)">${esc(s.title)}</h3>
+          <h3 class="service-title">${esc(s.title)}</h3>
           <p class="lede">${esc(s.summary)}</p>
           <p>${esc(s.description)}</p>
           <p class="fit"><strong>A good fit for:</strong> ${esc(s.goodFor)}</p>
@@ -285,7 +277,6 @@ export function servicesProjects({ site, services, gallery, art }) {
   <div class="container">
     <div class="size-band">
       <div class="stack">
-        <span class="eyebrow">Any size project</span>
         <h2 id="size-title">Small ideas and big plans are both welcome</h2>
         <p class="muted">Some of the most satisfying projects are small: a planter pair that finally makes the entry feel finished, or one shady corner turned into something you enjoy. If you're planning something larger, I'll be straightforward about scope and timing so the plan fits.</p>
       </div>
@@ -301,7 +292,6 @@ export function servicesProjects({ site, services, gallery, art }) {
 <section class="section" id="inspiration" aria-labelledby="inspiration-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">${hasProjects ? "Projects &amp; inspiration" : "Landscape design inspiration"}</span>
       <h2 id="inspiration-title">Landscape styles to explore</h2>
       <p class="lede">Different directions a South Florida garden can take. Use them as a starting point; most yards end up as a blend.</p>
     </div>
@@ -319,7 +309,7 @@ export function servicesProjects({ site, services, gallery, art }) {
 
 <section class="section section--sage" aria-labelledby="faq-title">
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Planning questions</span><h2 id="faq-title">Before you start a landscape project</h2></div>
+    <div class="section-head"><h2 id="faq-title">Before you start a landscape project</h2></div>
     ${faq([
       ["How can I improve a small front yard?", `<p>Focus on the walk to the door. Clean bed edges, a layered planting of two or three plant types repeated in groups, and a pair of planters by the entry make a small yard look intentional. Choose plants that stay a manageable size so you aren't pruning constantly.</p>`],
       ["What does a modern tropical landscape look like?", `<p>Bold leaf shapes against simple backgrounds: smooth walls, gravel, or clean mulch. It uses fewer plant types in larger groups, with plenty of breathing room. Palms, strappy foliage and low natives like coontie often play a part.</p>`],
@@ -353,7 +343,6 @@ export function plantsGuide({ plants, art }) {
 <section class="section" aria-labelledby="conditions-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Right plant, right place</span>
       <h2 id="conditions-title">What to consider in a South Florida garden</h2>
       <p class="lede">Matching each plant to its spot matters more than any single plant choice. These are the conditions I look at first.</p>
     </div>
@@ -372,7 +361,6 @@ export function plantsGuide({ plants, art }) {
 <section class="section section--ivory" aria-labelledby="plant-list-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Plant profiles</span>
       <h2 id="plant-list-title">Dependable plants for Broward landscapes</h2>
       <p class="lede">Mostly Florida natives, plus a non-native tropical favorite that isn't considered invasive. Open a card for care and design tips.</p>
     </div>
@@ -383,13 +371,12 @@ export function plantsGuide({ plants, art }) {
 <section class="section" aria-labelledby="avoid-title">
   <div class="container split" style="align-items:start">
     <div class="stack">
-      <span class="eyebrow">What I won't plant</span>
       <h2 id="avoid-title">No invasive plants, ever</h2>
       <p>Some plants sold in Florida spread into natural areas and crowd out native habitat. Brazilian pepper and coral ardisia are well-known examples. I check plant choices against the Florida Invasive Species Council list and UF/IFAS guidance, and I'm happy to suggest non-invasive alternatives for plants you already have.</p>
       <p><a class="text-link" href="https://gardeningsolutions.ifas.ufl.edu/care/weeds-and-invasive-plants/plant-this-not-that/" rel="noopener">UF/IFAS: Plant this, not that ${icons.arrow}</a></p>
     </div>
     <div class="stack">
-      <span class="eyebrow">Common questions</span>
+      <h3>Common questions</h3>
       ${faq([
         ["What plants grow well in South Florida?", `<p>Natives like firebush, coontie, cocoplum, muhly grass and wild coffee are reliable because they evolved here. Many tropical ornamentals, such as crotons, also do well when they get the right light and drainage.</p>`],
         ["Are all tropical plants native to Florida?", `<p>No. Many plants people think of as "Florida plants" come from elsewhere in the tropics. Non-native isn't automatically bad, but a few have become invasive, so it's worth checking before you plant.</p>`],

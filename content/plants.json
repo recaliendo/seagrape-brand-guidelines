@@ -1,5 +1,5 @@
 {
-  "_help": "Plant profiles for the South Florida Plants page. Every fact should come from a UF/IFAS or similarly authoritative source listed in 'sources'. Set 'featured' to true to show a plant on the Home page (3 recommended). Add a 'photo' object when you have a licensed or original photo.",
+  "_help": "Plant profiles for the South Florida Plants page. Every fact should come from a UF/IFAS or similarly authoritative source listed in 'sources'. Set 'featured' to true to show a plant on the Home page (3 recommended). Each plant has a 'photo' (files in src/assets/img/plants/) and a 'photoCredit'; record new photos in docs/image-credits.md.",
   "lastReviewed": "2026-10",
   "items": [
     {
@@ -15,11 +15,30 @@
       "care": "Fertilize sparingly. Keep lawn grass out of the root zone. Watch new spring growth for aphids.",
       "tip": "Nurseries also sell a Central American variety with yellow-orange flowers and smooth leaves. For the true native, look for red-orange flowers and slightly fuzzy leaves.",
       "featured": true,
-      "illustration": "plant-firebush",
       "sources": [
-        { "label": "UF/IFAS EDIS: Hamelia patens", "url": "https://edis.ifas.ufl.edu/fp237" },
-        { "label": "UF/IFAS Extension Charlotte County: A firebush of a different color", "url": "https://blogs.ifas.ufl.edu/charlotteco/2023/10/03/a-firebush-of-a-different-color/" }
-      ]
+        {
+          "label": "UF/IFAS EDIS: Hamelia patens",
+          "url": "https://edis.ifas.ufl.edu/fp237"
+        },
+        {
+          "label": "UF/IFAS Extension Charlotte County: A firebush of a different color",
+          "url": "https://blogs.ifas.ufl.edu/charlotteco/2023/10/03/a-firebush-of-a-different-color/"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-firebush-720.webp",
+        "srcSmall": "/img/plants/plant-firebush-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Clusters of tubular red-orange firebush flowers among glossy green leaves"
+      },
+      "photoCredit": {
+        "author": "Vinayaraj",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hamelia_patens_Flower.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
     },
     {
       "id": "coontie",
@@ -34,12 +53,34 @@
       "care": "Slow growing and rarely needs pruning. Hard to move once large, so plant it where it can stay.",
       "tip": "Coontie is the only larval host plant for the rare atala butterfly. Its seeds and roots are poisonous, so place it thoughtfully around children and pets.",
       "featured": true,
-      "illustration": "plant-coontie",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Plant This, Not That", "url": "https://gardeningsolutions.ifas.ufl.edu/care/weeds-and-invasive-plants/plant-this-not-that/" },
-        { "label": "UF/IFAS Extension Broward County: The atala butterfly", "url": "https://blogs.ifas.ufl.edu/browardco/2021/01/10/provide-for-wildlife-the-atala-butterfly/" },
-        { "label": "Florida-Friendly Landscaping: Coontie", "url": "https://ffl.ifas.ufl.edu/butterflies/browse/Details/414" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Plant This, Not That",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/care/weeds-and-invasive-plants/plant-this-not-that/"
+        },
+        {
+          "label": "UF/IFAS Extension Broward County: The atala butterfly",
+          "url": "https://blogs.ifas.ufl.edu/browardco/2021/01/10/provide-for-wildlife-the-atala-butterfly/"
+        },
+        {
+          "label": "Florida-Friendly Landscaping: Coontie",
+          "url": "https://ffl.ifas.ufl.edu/butterflies/browse/Details/414"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-coontie-720.webp",
+        "srcSmall": "/img/plants/plant-coontie-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Coontie plant with stiff, glossy, fern-like fronds growing in mulch"
+      },
+      "photoCredit": {
+        "author": "Daderot",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zamia_integrifolia_-_University_of_California_Botanical_Garden_-_DSC08987.JPG",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Zamia_integrifolia_-_University_of_California_Botanical_Garden_-_DSC08987.JPG"
+      }
     },
     {
       "id": "cocoplum",
@@ -54,11 +95,30 @@
       "care": "Plant about 3–4 ft apart for a hedge. Not freeze tolerant. Fruit can drop on walkways for a short time.",
       "tip": "Pick the form to match the job. 'Horizontal' is the low coastal type; the inland type makes a tall screen.",
       "featured": false,
-      "illustration": "plant-cocoplum",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Cocoplum", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/cocoplum/" },
-        { "label": "UF/IFAS EDIS: Cocoplum identification and uses", "url": "https://edis.ifas.ufl.edu/ep553" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Cocoplum",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/cocoplum/"
+        },
+        {
+          "label": "UF/IFAS EDIS: Cocoplum identification and uses",
+          "url": "https://edis.ifas.ufl.edu/ep553"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-cocoplum-720.webp",
+        "srcSmall": "/img/plants/plant-cocoplum-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Cocoplum branch with rounded leaves and small white flowers"
+      },
+      "photoCredit": {
+        "author": "Forest & Kim Starr",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Starr_031108-2161_Chrysobalanus_icaco.jpg",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+      }
     },
     {
       "id": "seagrape",
@@ -73,11 +133,30 @@
       "care": "Prune by hand because of the large leaves. Young trees need early training. Fallen leaves are slow to break down.",
       "tip": "Highly salt tolerant, which makes it one of the best choices near the coast. Seagrapes growing in dunes are protected; altering them there requires a state permit.",
       "featured": true,
-      "illustration": "plant-seagrape",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Seagrape", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/trees/seagrape/" },
-        { "label": "UF/IFAS EDIS: Coccoloba uvifera", "url": "https://edis.ifas.ufl.edu/st175" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Seagrape",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/trees/seagrape/"
+        },
+        {
+          "label": "UF/IFAS EDIS: Coccoloba uvifera",
+          "url": "https://edis.ifas.ufl.edu/st175"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-seagrape-720.webp",
+        "srcSmall": "/img/plants/plant-seagrape-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Large round seagrape leaves with red veins and clusters of green fruit"
+      },
+      "photoCredit": {
+        "author": "Forest & Kim Starr",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Starr_080604-6302_Coccoloba_uvifera.jpg",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+      }
     },
     {
       "id": "muhly-grass",
@@ -92,11 +171,30 @@
       "care": "Space 2–3 ft apart. Tidy or cut back in late winter before new growth starts. Rarely troubled by pests.",
       "tip": "Clouds of pink flower plumes appear in fall. Plant in groups so the color reads from a distance and moves with the wind.",
       "featured": false,
-      "illustration": "plant-muhly",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Muhly grass", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/muhly-grass/" },
-        { "label": "UF/IFAS: Muhlenbergia capillaris fact sheet", "url": "https://ask.ifas.ufl.edu/publication/FP415" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Muhly grass",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/muhly-grass/"
+        },
+        {
+          "label": "UF/IFAS: Muhlenbergia capillaris fact sheet",
+          "url": "https://ask.ifas.ufl.edu/publication/FP415"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-muhly-grass-720.webp",
+        "srcSmall": "/img/plants/plant-muhly-grass-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Muhly grass with clouds of pink flower plumes above fine green blades"
+      },
+      "photoCredit": {
+        "author": "Stickpen",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Muhlenbergia_capillaris_001.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Muhlenbergia_capillaris_001.jpg"
+      }
     },
     {
       "id": "wild-coffee",
@@ -111,11 +209,30 @@
       "care": "Needs well-drained soil and seldom needs pruning. For hedges, space about 4 ft apart and keep 4 ft from the house.",
       "tip": "Glossy, deeply veined leaves brighten shady spots. Birds eat the red fruit, but it isn't for people.",
       "featured": false,
-      "illustration": "plant-wildcoffee",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Wild coffee", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/wild-coffee/" },
-        { "label": "UF/IFAS EDIS: Psychotria nervosa", "url": "https://edis.ifas.ufl.edu/fp494" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Wild coffee",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/wild-coffee/"
+        },
+        {
+          "label": "UF/IFAS EDIS: Psychotria nervosa",
+          "url": "https://edis.ifas.ufl.edu/fp494"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-wild-coffee-720.webp",
+        "srcSmall": "/img/plants/plant-wild-coffee-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Wild coffee shrub with glossy, deeply veined green leaves"
+      },
+      "photoCredit": {
+        "author": "James St. John",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Psychotria_nervosa_(wild_coffee)_2_(49747357008).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
     },
     {
       "id": "simpsons-stopper",
@@ -130,11 +247,30 @@
       "care": "Handles shearing well, though heavy pruning reduces flowers and berries. Tolerates salt and alkaline soil.",
       "tip": "Fragrant white spring flowers, orange-red berries for birds, and peeling cinnamon-colored bark. Buy nursery-grown plants only.",
       "featured": false,
-      "illustration": "plant-stopper",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Simpson's stopper", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/simpsons-stopper/" },
-        { "label": "UF/IFAS EDIS: Myrcianthes fragrans", "url": "https://edis.ifas.ufl.edu/fp418" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Simpson's stopper",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/simpsons-stopper/"
+        },
+        {
+          "label": "UF/IFAS EDIS: Myrcianthes fragrans",
+          "url": "https://edis.ifas.ufl.edu/fp418"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-simpsons-stopper-720.webp",
+        "srcSmall": "/img/plants/plant-simpsons-stopper-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Simpson's stopper branches with small, dense, glossy leaves"
+      },
+      "photoCredit": {
+        "author": "David J. Stang",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Myrcianthes_fragrans_3zz.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     },
     {
       "id": "sabal-palm",
@@ -149,11 +285,30 @@
       "care": "Plant at the same depth it grew before. Remove only fully dead fronds and avoid 'hurricane cuts', which weaken palms.",
       "tip": "Tolerates salt spray on its fronds better than salty soil. Seedlings can pop up beneath it, so plan for occasional weeding.",
       "featured": false,
-      "illustration": "plant-sabal",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Sabal palmetto", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/palms-and-cycads/sabal-palmetto/" },
-        { "label": "UF/IFAS EDIS: Regenerated sabal palms", "url": "https://edis.ifas.ufl.edu/ep543" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Sabal palmetto",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/palms-and-cycads/sabal-palmetto/"
+        },
+        {
+          "label": "UF/IFAS EDIS: Regenerated sabal palms",
+          "url": "https://edis.ifas.ufl.edu/ep543"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-sabal-palm-720.webp",
+        "srcSmall": "/img/plants/plant-sabal-palm-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Close view of a sabal palm's fan-shaped frond"
+      },
+      "photoCredit": {
+        "author": "David J. Stang",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sabal_palmetto_7zz.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     },
     {
       "id": "croton",
@@ -168,11 +323,30 @@
       "care": "Space 2–3 ft apart. Frost damages leaves, but plants usually recover. Occasionally gets scale or mites.",
       "tip": "Leaves and sap are irritating and poisonous if chewed, and the sap can stain. Wear gloves and keep away from pets that nibble plants.",
       "featured": false,
-      "illustration": "plant-croton",
       "sources": [
-        { "label": "UF/IFAS Gardening Solutions: Crotons", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/crotons/" },
-        { "label": "UF/IFAS Extension Polk County: Growing crotons", "url": "https://blogs.ifas.ufl.edu/polkco/2025/05/10/colorful-and-carefree-growing-crotons-in-your-central-florida-yard/" }
-      ]
+        {
+          "label": "UF/IFAS Gardening Solutions: Crotons",
+          "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/crotons/"
+        },
+        {
+          "label": "UF/IFAS Extension Polk County: Growing crotons",
+          "url": "https://blogs.ifas.ufl.edu/polkco/2025/05/10/colorful-and-carefree-growing-crotons-in-your-central-florida-yard/"
+        }
+      ],
+      "photo": {
+        "src": "/img/plants/plant-croton-720.webp",
+        "srcSmall": "/img/plants/plant-croton-480.webp",
+        "width": 720,
+        "height": 480,
+        "alt": "Croton with long, glossy leaves striped green, yellow and red"
+      },
+      "photoCredit": {
+        "author": "Diego Delso",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Codiaeum_variegatum,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_01.JPG",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
     }
   ]
 }

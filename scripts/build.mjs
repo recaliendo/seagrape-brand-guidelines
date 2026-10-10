@@ -9,7 +9,6 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { layout } from "../src/templates/layout.mjs";
 import * as pages from "../src/templates/pages.mjs";
-import { renderIllustrations, ILLUSTRATION_SIZES } from "../src/build/illustrations.mjs";
 import { prepareReviews } from "../src/build/reviews.mjs";
 import { KIND_LABELS } from "../src/templates/pages.mjs";
 
@@ -52,7 +51,7 @@ function securityHeaders() {
 
 /css/*
   Cache-Control: public, max-age=31536000, immutable
-/img/art/*
+/img/*
   Cache-Control: public, max-age=86400
 `;
 }
@@ -127,16 +126,13 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, r
   const assets = { css: hash(css), js: hash(siteJs) };
 
   // Illustrations generated from brand tokens.
-  const art = renderIllustrations(parseTokens(tokensCss));
-  await mkdir(join(outDir, "img/art"), { recursive: true });
-  for (const [name, svg] of Object.entries(art)) await writeFile(join(outDir, `img/art/${name}.svg`), svg);
 
   // Owner photos and other static images.
   if (existsSync(join(ROOT, "src/assets/img"))) await cp(join(ROOT, "src/assets/img"), join(outDir, "img"), { recursive: true });
   await cp(join(ROOT, "logo/seagrape-favicon.svg"), join(outDir, "favicon.svg"));
 
   // Pages.
-  const ctx = { site, services, gallery, plants, reviews, owner, art: ILLUSTRATION_SIZES };
+  const ctx = { site, services, gallery, plants, reviews, owner, art: {} };
   const list = [
     pages.home(ctx),
     pages.servicesProjects(ctx),
@@ -170,12 +166,12 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, r
   if (site.nameIsPlaceholder) warnings.push('Business name is still the placeholder. Update "name" in content/site.json and set "nameIsPlaceholder" to false.');
   if (!site.email && !site.phone) warnings.push("No public email or phone in content/site.json. Visitors can only reach you through the form.");
   if (!site.url) warnings.push("No site URL set, so canonical links and sitemap.xml were skipped. Netlify sets this automatically during deploys.");
-  if (!owner.photo) warnings.push(`No photo of ${owner.name} yet, so the illustrated placeholder is showing. See docs/setup-and-deployment.md.`);
+  if (!owner.photo) warnings.push(`No photo of ${owner.name} yet, so a line-drawing placeholder is showing. See docs/setup-and-deployment.md.`);
   warnings.push(...reviews.warnings);
   if (sampleReviews) warnings.push("SAMPLE REVIEWS ARE SHOWING. Development preview only; never deploy this build.");
   else if (!reviews.items.length) warnings.push("No verified reviews yet, so the testimonials section is hidden.");
   for (const w of warnings) log(`  ! ${w}`);
-  log(`Built ${list.length} pages and ${Object.keys(art).length} illustrations → ${outDir}`);
+  log(`Built ${list.length} pages → ${outDir}`);
   return { outDir, pages: list.map((p) => p.path), warnings };
 }
 

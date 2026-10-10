@@ -43,7 +43,7 @@ Use natural light, real and healthy plants, architectural context, and believabl
 **Sourcing order:**
 1. The owner's own photos of their own work.
 2. Properly licensed photos (currently 8 from Wikimedia Commons), recorded in [image-credits.md](image-credits.md).
-3. The built-in illustrations (used for service cards and plant profiles).
+3. No illustrated stand-ins: where no photo exists yet, show text only (or the fine-line leaf for Robert's portrait).
 
 Never hotlink or scrape images from other sites. Get permission before showing a client's home, and avoid house numbers, license plates and faces.
 

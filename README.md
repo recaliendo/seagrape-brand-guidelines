@@ -27,7 +27,7 @@ No `npm install` needed: zero dependencies, Node 20+.
 | SMS alerts (Twilio) | ⚙️ Optional; built and tested with mocks; needs Twilio credentials and carrier registration |
 | Real business name, email, phone | ⛔ **Launch blocker:** placeholders in `content/site.json` |
 | Inspiration gallery | ✅ 8 licensed, credited photos labeled "Landscape design inspiration" ([credits](docs/image-credits.md)) |
-| Meet Robert section | ✅ Story live; illustrated placeholder until Robert's photo is added ([how](docs/setup-and-deployment.md#updating-roberts-story-and-photo)) |
+| Meet Robert section | ✅ Story live; fine-line placeholder until Robert's photo is added ([how](docs/setup-and-deployment.md#updating-roberts-story-and-photo)) |
 | Customer reviews | ✅ Ready; hidden until you add real, permitted reviews to `content/reviews.json` |
 | Your own project photos | ⏳ Add as `"kind": "project"` once you have them |
 | Hosting | ⚙️ Ready for Netlify; not yet deployed |
@@ -42,7 +42,7 @@ src/assets/css/     tokens.css (single source of truth for brand styling) + site
 src/assets/js/      site.js (menu, motion) + inquiry-form.js (form behavior)
 src/templates/      layout.mjs (head, header, footer) + pages.mjs (page content)
 src/assets/img/     Photos (inspiration gallery; add your own here)
-src/build/          illustrations.mjs (brand-colored SVG art) · reviews.mjs (review publishing rules)
+src/build/          reviews.mjs (review publishing rules)
 lib/inquiry/        schema.mjs (shared validation) · notify.mjs (email/SMS) · handler.mjs (HTTP)
 netlify/functions/  inquiry.mjs (serverless endpoint at /api/inquiry)
 scripts/            build.mjs · dev.mjs

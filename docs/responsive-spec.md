@@ -8,9 +8,9 @@ Last QA pass: October 2026, measured on Home, Services & Projects, South Florida
 
 | Name | Min width | What changes |
 |---|---|---|
-| base | 0 | Single column; Menu button; hero text above illustration |
-| sm | 40em (640px) | Two-column forms and card grids; hero illustration capped at 24rem while stacked |
-| md | 56em (896px) | Two-column hero (text 1.1fr, illustration 0.9fr), split sections, Meet Robert side by side, sticky contact sidebar |
+| base | 0 | Single column; Menu button; hero text above the photo; Robert's portrait at 70% width |
+| sm | 40em (640px) | Two-column forms, grids and steps; hero photo capped at 22rem while stacked |
+| md | 56em (896px) | Two-column hero (text 1.25fr, photo 0.75fr), services index in two columns, split sections, Meet Robert side by side, sticky contact sidebar |
 | nav | 60em (960px) | Full navigation replaces the Menu button (moved from 56em, where the links wrapped) |
 | lg | 64em (1024px) | Three-column card grids and growing-conditions grid |
 | xl | 90em (1440px) | Container widens from 72rem to 80rem (1152 → 1280px) |
@@ -45,7 +45,7 @@ Body text never drops below 16px. Headings use `text-wrap: balance`; the hero h1
 
 | Image | Rule |
 |---|---|
-| Hero illustration | 4:5 arch. Stacked (below 896px): full width, capped at 24rem on tablets. Side by side: width = the smaller of 32rem, the column, or (screen height − 10rem) × 0.8, so the whole hero fits on the first screen of 1280×720, 1366×768 and 1536×864 laptops. SVG scales without quality loss. |
+| Hero photo | 4:5, plain 4px frame. Stacked: full width, capped at 22rem on tablets. Side by side: width = the smaller of 30rem, the column, or (screen height − 12rem) × 0.8, so the whole hero fits the first screen from 1024×768 to 2560×1440. |
 | Cards, gallery, services | 3:2, `object-fit: cover`, `width`/`height` attributes set (no layout shift) |
 | Plant cards | 3:2 |
 | Robert's portrait | 4:5, max 28rem, sticky beside the story from md up |
@@ -56,7 +56,7 @@ Body text never drops below 16px. Headings use `text-wrap: balance`; the hero h1
 
 **Navigation:** sticky; a hairline border appears after scrolling. The Menu button (44px tall) opens a full-width panel below 960px; Escape closes it and returns focus. Links don't wrap (`white-space: nowrap`). The current page has an underline (desktop) or a dot (mobile). The "Start Your Project" button stays in the header at every width.
 
-**Hero:** a deep-green band (`--color-leaf-900`) with a warm-white headline (`--text-hero`, up to 5.25rem, always three lines on desktop), a blush italic phrase and a blush primary button. Text column 1.25fr, illustration 0.75fr. Stacked text-first below 896px so the CTAs are visible without scrolling on phones and tablets; side by side above. The CTA pair wraps to two rows on narrow phones; both buttons are at least 48px tall.
+**Hero:** a deep-green band (`--color-leaf-900`) with a warm-white headline (`--text-hero`, always three lines on desktop), a limestone italic phrase, a limestone primary button and a text link, plus a real photo with its credit. Stacked text-first below 896px.
 
 **Card grids:** fixed column counts (1 → 2 → 3) instead of auto-fill, so wider containers never produce a fourth column with a lone card. Cards in a row share height; plant cards align to the top so opening "care & design tips" doesn't stretch neighbors.
 
@@ -75,7 +75,7 @@ Body text never drops below 16px. Headings use `text-wrap: balance`; the hero h1
 | Color contrast | Tested in `tests/site.test.mjs`; all text pairs ≥ 4.5:1 |
 | Keyboard | Skip link, visible focus ring, menu Escape handling, native `<details>` disclosures |
 | Layout shift | Every image has width and height; fonts use `display=swap` |
-| LCP | Hero illustration preloaded; it's an SVG of a few kilobytes |
+| LCP | Hero photo preloaded (640px WebP, about 87 KB) |
 
 ## Maintaining it
 

@@ -25,7 +25,7 @@ export const logoMark = (cls = "") =>
   `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 8C76 8 94 28 94 52C94 76 74 94 50 94C28 94 8 78 8 54C8 40 14 28 24 20C32 13 40 8 50 8Z" fill="#3E5E48"/><g stroke="#E3B7A6" stroke-linecap="round" fill="none"><path d="M50 90V30" stroke-width="4"/><path d="M50 70L30 53M50 70L70 53M50 51L34 38M50 51L66 38" stroke-width="3.2"/></g></svg>`;
 
 /**
- * Image for content items: uses the owner's photo when provided, otherwise the brand illustration.
+ * Image for content items: the item's photo, or nothing when there isn't one yet (no illustrated stand-ins).
  * Pass alt="" when the image is decorative next to a heading that already says the same thing.
  */
 export function media(item, { alt, eager = false, sizes = "(min-width: 56em) 50vw, 100vw", art } = {}) {
@@ -34,9 +34,7 @@ export function media(item, { alt, eager = false, sizes = "(min-width: 56em) 50v
     const srcset = p.srcSmall ? ` srcset="${esc(p.srcSmall)} 480w, ${esc(p.src)} ${p.width || 800}w" sizes="${sizes}"` : "";
     return `<img src="${esc(p.src)}"${srcset} alt="${esc(alt ?? p.alt ?? "")}" width="${p.width || 1200}" height="${p.height || 900}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
   }
-  const key = item.illustration;
-  const [w, h] = art?.[key] || [800, 600];
-  return `<img src="/img/art/${esc(key)}.svg" alt="${esc(alt ?? "")}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+  return "";
 }
 
 function jsonLd(site, pageUrl) {
@@ -92,7 +90,7 @@ function header(site, path) {
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="${esc(site.name)}, home">${logoMark()}<span class="brand-name">${esc(site.shortName || site.name)}<small>Landscape Design</small></span></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span><span class="nav-toggle-label">Menu</span></button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-label">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="nav-list">${NAV.map(link).join("")}</ul>
       <a class="btn btn-primary nav-cta" href="${CTA_HREF}">Start Your Project</a>
@@ -159,10 +157,9 @@ export const ctaBand = ({ title = "Have a landscaping idea? I'd love to hear abo
 <section class="section" aria-labelledby="cta-title">
   <div class="container">
     <div class="cta-band">
-      <span class="eyebrow eyebrow--on-dark">Start a conversation</span>
       <h2 id="cta-title">${esc(title)}</h2>
       <p>${esc(text)}</p>
-      <a class="btn btn-light" href="${CTA_HREF}">Start Your Project ${icons.arrow}</a>
+      <a class="btn btn-primary" href="${CTA_HREF}">Start Your Project</a>
     </div>
   </div>
 </section>`;

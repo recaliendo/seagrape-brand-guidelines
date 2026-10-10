@@ -1,8 +1,8 @@
 /*
   Seagrape design tokens: the single source of truth for brand styling.
   Change a value here and it updates everywhere. Documented in docs/ui-guidelines.md.
-  Concept: an airy botanical studio. Warm white paper, sage and foliage greens,
-  muted terracotta used sparingly, serif headlines, arched image frames.
+  Concept: a quiet landscape-studio portfolio. Warm white paper, deep foliage green,
+  a limestone accent on green, real photography, serif headlines, 4px corners, no ornament.
 */
 :root {
   /* Neutrals */
@@ -21,10 +21,10 @@
   --color-leaf-900: #1F3529;    /* headings, footer */
 
   /* Accents */
-  --color-terracotta: #B8694C;  /* decorative only: rules, dots, illustration */
-  --color-terracotta-text: #974F37; /* accessible terracotta for small text */
+  --color-terracotta: #B8694C;  /* link hover underline only */
+  --color-terracotta-text: #974F37; /* reserved; not used for UI labels */
   --color-wood: #9C7A5B;
-  --color-blush: #E3B7A6;      /* accent on dark green: hero italic, hero CTA */
+  --color-limestone: #E4D8C3;  /* the only accent on deep green: hero italic + hero CTA (9.3:1 on leaf-900) */
 
   /* Text */
   --color-ink: #26302A;         /* body text */
@@ -47,8 +47,8 @@
   --text-base: 1.0625rem; /* 17px body */
   --text-lg: 1.25rem;     /* 20px lede */
   --text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);  /* h3 */
-  --text-2xl: clamp(1.75rem, 1.35rem + 1.3vw, 2.75rem);  /* h2 */
-  --text-3xl: clamp(2.375rem, 1.6rem + 2.9vw, 4.5rem);   /* h1 */
+  --text-2xl: clamp(1.875rem, 1.4rem + 1.6vw, 2.75rem);  /* h2 */
+  --text-3xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem);   /* page h1 */
   --text-hero: clamp(2.75rem, 1.5rem + 3.6vw, 5.25rem);  /* home hero h1 */
 
   --leading-tight: 1.12;
@@ -74,16 +74,12 @@
   --measure: 38rem;     /* comfortable reading width */
 
   /* Shape */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
-  --radius-arch: 999px 999px var(--radius-md) var(--radius-md);
+  /* One radius everywhere: architectural, not app-like. */
+  --radius: 4px;
 
   /* Depth & motion */
-  --shadow-soft: 0 1px 2px rgb(31 53 41 / 0.05), 0 10px 30px -12px rgb(31 53 41 / 0.14);
-  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --duration: 220ms;
+  /* No shadows; motion limited to color changes. */
+  --duration: 150ms;
 
   /* Breakpoints (reference only; CSS can't use variables in media queries):
      sm 40em (640px)   two-column forms and card grids
