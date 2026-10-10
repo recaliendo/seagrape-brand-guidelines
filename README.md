@@ -53,9 +53,12 @@ docs/               Brand, UI, UX, content and setup guides
 
 ## Documentation
 
+- [Business tech architecture](BUSINESS_TECH_ARCHITECTURE.md), [customer lead flow](CUSTOMER_LEAD_FLOW.md) and [implementation roadmap](IMPLEMENTATION_ROADMAP.md): how the site connects to scheduling, contracts, Stripe and QuickBooks
+
 - [Brand voice](docs/brand-voice.md): how Robert sounds; read before writing any copy
 - [Brand guidelines](docs/brand-guidelines.md): positioning, color, type, logo
 - [UI guidelines](docs/ui-guidelines.md): tokens, layout, components, accessibility
+- [Responsive spec](docs/responsive-spec.md): breakpoints, container widths, type scale, image rules
 - [UX guidelines](docs/ux-guidelines.md): journey, navigation, form design
 - [Content guidelines](docs/content-guidelines.md): writing, plant accuracy, photo honesty, SEO
 - [Setup & deployment](docs/setup-and-deployment.md): configuration, email/SMS, Netlify, photos, reviews

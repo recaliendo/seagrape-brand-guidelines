@@ -19,6 +19,10 @@ Read [docs/brand-voice.md](docs/brand-voice.md). Write as Robert ("I") for perso
 - Pages: `src/templates/pages.mjs` and `layout.mjs`
 - Inquiry form and handler: `lib/inquiry/`, `netlify/functions/inquiry.mjs`
 
+## Business systems
+
+Before adding integrations (Sheets, scheduling, Stripe, QuickBooks), follow BUSINESS_TECH_ARCHITECTURE.md and IMPLEMENTATION_ROADMAP.md. Add a tool only when its phase trigger is met. An integration failure must never block or misreport an inquiry.
+
 ## Commands
 
 - `npm run check`: build and run all tests. Run it before every commit.

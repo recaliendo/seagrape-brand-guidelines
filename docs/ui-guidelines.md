@@ -12,20 +12,14 @@ To restyle the brand, edit `tokens.css` and run `npm run check`. The contrast te
 
 | Token | Value | Use |
 |---|---|---|
-| `--container` | 72rem (1152px) | Max content width |
+| `--container` | 72rem → 80rem | Max content width (1152px; 1280px from 1440px screens; scales to 1440/1600px on very large screens) |
 | `--measure` | 38rem | Max width for paragraphs |
 | `--gutter` | 16px → 40px (fluid) | Side padding; never below 16px |
 | `--section-space` | 72px → 112px (fluid) | Vertical rhythm between sections |
 
 Sections alternate backgrounds (`.section`, `.section--ivory`, `.section--sage`) instead of using heavy dividers. Grids use `auto-fill` with a minimum card width so they collapse to one column on phones without extra media queries.
 
-**Breakpoints** (documented here; CSS can't use variables in media queries):
-
-| Name | Width | What changes |
-|---|---|---|
-| sm | 40em / 640px | Two-column form rows |
-| md | 56em / 896px | Desktop navigation, two-column hero, split sections, sticky contact sidebar |
-| lg | 72em / 1152px | Container reaches max width |
+**Breakpoints and large screens:** see [responsive-spec.md](responsive-spec.md) for the full breakpoint table, container widths by screen size, the type scale and component behavior.
 
 ## Spacing
 
