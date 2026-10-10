@@ -46,7 +46,7 @@ function inspirationMosaic(items, art) {
     )
     .join("")}
 </div>
-${credits.length ? `<p class="credit mosaic-credit">${KIND_LABELS.inspiration}: photos of public gardens, not our projects. Photos by ${credits
+${credits.length ? `<p class="credit mosaic-credit">${KIND_LABELS.inspiration}: photos of public gardens, not completed client projects. Photos by ${credits
     .map((c) => `${esc(c.author)} (<a href="${esc(c.licenseUrl)}" rel="license noopener">${esc(c.license)}</a>)`)
     .join(", ")} via Wikimedia Commons. <a href="/services-projects/#inspiration">Full credits</a>.</p>` : ""}`;
 }
@@ -79,7 +79,7 @@ export function reviewsSection({ items = [], googleReviewUrl = "" } = {}) {
   if (!items.length && !ask) return "";
   if (!items.length) return `<section class="section section--tight" aria-label="Customer reviews"><div class="container">${ask}</div></section>`;
   return `
-<section class="section section--ivory" aria-labelledby="reviews-title">
+<section class="section" aria-labelledby="reviews-title">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">In their words</span>
@@ -121,8 +121,42 @@ const faq = (items) => `<div class="faq">${items
   .map(([q, a]) => `<details><summary>${esc(q)}</summary><div class="answer">${a}</div></details>`)
   .join("")}</div>`;
 
+// ---------------------------------------------------------------- Owner
+export const ownerAnchor = (owner) => `meet-${String(owner.name).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+/** Robert's introduction: portrait (or illustrated placeholder), story excerpt, full story on demand, and a first-person CTA. */
+export function ownerSection(owner, art) {
+  const hasPhoto = Boolean(owner.photo?.src);
+  const picture = hasPhoto
+    ? media({ photo: owner.photo }, { sizes: "(min-width: 56em) 440px, 100vw" })
+    : media({ illustration: "portrait-placeholder" }, { alt: "", art });
+  const paras = (list) => list.map((p) => `<p>${esc(p)}</p>`).join("");
+  return `
+<section class="section section--ivory owner" id="${ownerAnchor(owner)}" aria-labelledby="owner-title">
+  <div class="container owner-grid">
+    <figure class="portrait${hasPhoto ? "" : " portrait--placeholder"}">
+      <div class="portrait-frame">${picture}</div>
+      <figcaption class="portrait-caption">${esc(owner.name)} — ${esc(owner.role)}</figcaption>
+    </figure>
+    <div class="owner-copy">
+      <span class="eyebrow">${esc(owner.eyebrow)}</span>
+      <h2 id="owner-title">${esc(owner.headline)}</h2>
+      <p class="owner-greeting">${esc(owner.greeting)}</p>
+      <div class="owner-story">${paras(owner.intro)}</div>
+      ${owner.story?.length ? `<details class="owner-more"><summary><span class="more-label">Read more of my story</span><span class="less">Show less</span></summary><div class="owner-story">${paras(owner.story)}</div></details>` : ""}
+      <p class="signature">— ${esc(owner.signoff)}</p>
+      <div class="owner-cta">
+        <h3>${esc(owner.cta.title)}</h3>
+        <p>${esc(owner.cta.text)}</p>
+        <a class="btn btn-primary" href="${CTA_HREF}">${esc(owner.cta.button)} ${icons.arrow}</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 // ---------------------------------------------------------------- Home
-export function home({ site, services, gallery, plants, reviews, art }) {
+export function home({ site, services, gallery, plants, reviews, owner, art }) {
   const featured = plants.items.filter((p) => p.featured).slice(0, 3);
   return {
     path: "/",
@@ -136,10 +170,10 @@ export function home({ site, services, gallery, plants, reviews, art }) {
     <div class="hero-copy">
       <span class="eyebrow">Landscape design · Broward County, Florida</span>
       <h1>Thoughtful landscaping, <em>personally designed.</em></h1>
-      <p class="lede">We're a small, hands-on landscaping studio. We listen first, then create gardens that suit your home, your style and the way South Florida grows.</p>
+      <p class="lede">Beautiful landscaping starts with understanding your space and what you'd love it to become. I listen first, then help create a garden that suits your home, your style and the way South Florida grows.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="${CTA_HREF}">Start Your Project ${icons.arrow}</a>
-        <a class="btn btn-secondary" href="/services-projects/#inspiration">Explore Our Work</a>
+        <a class="btn btn-secondary" href="/services-projects/#inspiration">Explore Design Ideas</a>
       </div>
       <ul class="hero-note"><li>Owner-operated</li><li>Small and large projects welcome</li><li>South Florida plant know-how</li></ul>
     </div>
@@ -149,27 +183,14 @@ export function home({ site, services, gallery, plants, reviews, art }) {
   </div>
 </section>
 
-<section class="section section--ivory" aria-labelledby="intro-title">
-  <div class="container split">
-    <div class="stack">
-      <span class="eyebrow">Small by design</span>
-      <h2 id="intro-title">Personal attention from the people caring for your landscape</h2>
-      <p class="lede">When you reach out, you talk with the person who will plan and plant your garden. There's no sales team and no hand-off, just more time on your property and more care in every choice.</p>
-    </div>
-    <ul class="points">
-      <li><span class="icon">${icons.person}</span><div><strong>You work directly with the owner</strong>The same person listens to your ideas, shapes the plan and shows up to do the work.</div></li>
-      <li><span class="icon">${icons.pencil}</span><div><strong>Designed around you</strong>Every plan starts with your home, your taste, how you use your yard and what you want to spend.</div></li>
-      <li><span class="icon">${icons.leaf}</span><div><strong>Plants that belong here</strong>Choices suited to Broward's heat, summer rain, sandy soil and, near the coast, salt air.</div></li>
-    </ul>
-  </div>
-</section>
+${ownerSection(owner, art)}
 
 <section class="section" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">What we do</span>
+      <span class="eyebrow">Services</span>
       <h2 id="services-title">Landscaping services, shaped to your project</h2>
-      <p class="lede">From a single entry bed to a full yard, every project gets the same care.</p>
+      <p class="lede">From a single entry bed to a full yard, every project gets the same care and attention.</p>
     </div>
     <div class="grid grid--3">${services.items.map((s) => serviceCard(s, art)).join("")}</div>
     <div class="section-foot"><a class="text-link" href="/services-projects/">See all services ${icons.arrow}</a></div>
@@ -181,7 +202,7 @@ export function home({ site, services, gallery, plants, reviews, art }) {
     <div class="section-head">
       <span class="eyebrow">Design inspiration</span>
       <h2 id="styles-title">Find the style that feels like home</h2>
-      <p class="lede">Ideas from gardens around South Florida, from clean modern lines to lush tropical layers. Mix them, adapt them, or bring your own.</p>
+      <p class="lede">There's no single way to create a beautiful landscape. Some spaces call for clean, simple greenery, while others come alive with layers of tropical color.</p>
     </div>
     ${inspirationMosaic(gallery.items.filter((g) => g.featured).slice(0, 4), art)}
     <div class="section-foot"><a class="btn btn-secondary" href="/services-projects/#inspiration">Explore the inspiration gallery ${icons.arrow}</a></div>
@@ -191,15 +212,15 @@ export function home({ site, services, gallery, plants, reviews, art }) {
 <section class="section" aria-labelledby="approach-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Our approach</span>
+      <span class="eyebrow">My approach</span>
       <h2 id="approach-title">How we work together</h2>
       <p class="lede">Every project is different, so we'll talk through what each step looks like for yours.</p>
     </div>
     <ol class="steps">
-      <li><h3>Tell us about your space</h3><p>Share your ideas, photos and what you'd like to change. A short note is plenty to start.</p></li>
-      <li><h3>Explore ideas together</h3><p>We look at the property with you: sun, shade, drainage, and how you want the space to feel.</p></li>
-      <li><h3>Create a personalized plan</h3><p>We suggest a layout, plants and materials that fit your style and budget, and adjust until it feels right.</p></li>
-      <li><h3>Bring your landscape to life</h3><p>We prepare the beds, plant with care, and explain how to help everything settle in.</p></li>
+      <li><h3>Tell me about your space</h3><p>Share your ideas, a few photos and what you'd like to change. A short note is plenty to start.</p></li>
+      <li><h3>Explore ideas together</h3><p>We walk the property together and talk about sun, shade, drainage and how you want the space to feel.</p></li>
+      <li><h3>Create a personalized plan</h3><p>I suggest a layout, plants and materials that fit your style and budget, and we adjust until it feels right.</p></li>
+      <li><h3>Bring your landscape to life</h3><p>I prepare the beds, plant with care, and show you how to help everything settle in.</p></li>
     </ol>
   </div>
 </section>
@@ -209,7 +230,7 @@ export function home({ site, services, gallery, plants, reviews, art }) {
     <div class="section-head">
       <span class="eyebrow">South Florida plants</span>
       <h2 id="plants-title">Plants that thrive in Broward</h2>
-      <p class="lede">Beautiful landscapes start with plants suited to our climate. Here are a few favorites from our garden guide.</p>
+      <p class="lede">South Florida gives us some wonderful planting options. Here are a few I keep coming back to, from the garden guide.</p>
     </div>
     <div class="grid grid--3">${featured.map((p) => plantCard(p, art, { compact: true })).join("")}</div>
     <div class="section-foot"><a class="text-link" href="/south-florida-plants/">Visit the South Florida plant guide ${icons.arrow}</a></div>
@@ -233,7 +254,7 @@ export function servicesProjects({ site, services, gallery, art }) {
   <div class="container">
     <span class="eyebrow">Services &amp; projects</span>
     <h1>Landscaping that fits your home and your life</h1>
-    <p class="lede">Whether you want a complete new look or a few thoughtful changes, we'll shape the work around your space, your style and your budget.</p>
+    <p class="lede">Whether it's refreshing a garden bed, choosing the right plants or rethinking your outdoor space, I'm happy to explore the possibilities with you.</p>
   </div>
 </header>
 
@@ -266,7 +287,7 @@ export function servicesProjects({ site, services, gallery, art }) {
       <div class="stack">
         <span class="eyebrow">Any size project</span>
         <h2 id="size-title">Small ideas and big plans are both welcome</h2>
-        <p class="muted">Some of the most satisfying projects are small: a planter pair that finally makes the entry feel finished, or one shady corner turned into something you enjoy. If you're planning something larger, we'll talk honestly about scope and timing so the plan fits.</p>
+        <p class="muted">Some of the most satisfying projects are small: a planter pair that finally makes the entry feel finished, or one shady corner turned into something you enjoy. If you're planning something larger, I'll be straightforward about scope and timing so the plan fits.</p>
       </div>
       <ul>
         <li>Refresh one bed or an entire yard</li>
@@ -289,7 +310,7 @@ export function servicesProjects({ site, services, gallery, art }) {
     <div class="inspo-cta">
       <div class="stack">
         <h3>Inspired by something you see? Let's design something just for you.</h3>
-        <p class="muted">Tell us which looks you like and a little about your yard. We'll help you adapt the idea to your space, your budget and South Florida's conditions.</p>
+        <p class="muted">Tell me which looks you like and a little about your yard. I'll help you adapt the idea to your space, your budget and South Florida's conditions.</p>
       </div>
       <a class="btn btn-primary" href="${CTA_HREF}">Start Your Project ${icons.arrow}</a>
     </div>
@@ -304,7 +325,7 @@ export function servicesProjects({ site, services, gallery, art }) {
       ["What does a modern tropical landscape look like?", `<p>Bold leaf shapes against simple backgrounds: smooth walls, gravel, or clean mulch. It uses fewer plant types in larger groups, with plenty of breathing room. Palms, strappy foliage and low natives like coontie often play a part.</p>`],
       ["How can I refresh an existing garden without starting over?", `<p>Keep the healthy, well-placed plants and edit out the ones that are struggling or overgrown. Redefine the bed lines, fill gaps with plants suited to the light, and finish with fresh mulch. A refresh often costs far less than a full redesign.</p>`],
       ["What should I think about before planning a landscape project?", `<p>Notice where the sun falls through the day, where water collects after rain, and how you use each part of the yard. Think about how much upkeep you want. A rough budget range helps, but it's fine to start with ideas and figure out the numbers together.</p>`],
-      ["Do you take on small projects?", `<p>Yes. Small projects are welcome. Tell us what you have in mind and we'll let you know honestly whether we're a good fit.</p>`],
+      ["Do you take on small projects?", `<p>Yes, and I enjoy them. Sometimes a few carefully chosen plants make as much difference as a bigger project. Tell me what you have in mind and I'll let you know honestly whether I'm a good fit.</p>`],
     ])}
   </div>
 </section>
@@ -325,7 +346,7 @@ export function plantsGuide({ plants, art }) {
   <div class="container">
     <span class="eyebrow">Garden guide</span>
     <h1>South Florida plants &amp; garden guide</h1>
-    <p class="lede">Plants that look good in a nursery don't always last in a Broward yard. This guide covers what our climate asks of a garden, plus a few dependable plants we like to design with.</p>
+    <p class="lede">South Florida gives us some wonderful planting options, but choosing the right plant for the right spot makes all the difference. This guide covers what our climate asks of a garden, plus a few dependable plants I like to work with.</p>
   </div>
 </header>
 
@@ -334,7 +355,7 @@ export function plantsGuide({ plants, art }) {
     <div class="section-head">
       <span class="eyebrow">Right plant, right place</span>
       <h2 id="conditions-title">What to consider in a South Florida garden</h2>
-      <p class="lede">Matching each plant to its spot matters more than any single plant choice. These are the conditions we look at first.</p>
+      <p class="lede">Matching each plant to its spot matters more than any single plant choice. These are the conditions I look at first.</p>
     </div>
     <div class="conditions">
       <div class="condition"><h3>Sun and shade</h3><p>Note how many hours of direct sun each area gets. Afternoon sun in South Florida is intense, and plants labeled "part shade" often struggle in a west-facing bed.</p></div>
@@ -362,9 +383,9 @@ export function plantsGuide({ plants, art }) {
 <section class="section" aria-labelledby="avoid-title">
   <div class="container split" style="align-items:start">
     <div class="stack">
-      <span class="eyebrow">What we won't plant</span>
+      <span class="eyebrow">What I won't plant</span>
       <h2 id="avoid-title">No invasive plants, ever</h2>
-      <p>Some plants sold in Florida spread into natural areas and crowd out native habitat. Brazilian pepper and coral ardisia are well-known examples. We check plant choices against the Florida Invasive Species Council list and UF/IFAS guidance, and we're happy to suggest non-invasive alternatives for plants you already have.</p>
+      <p>Some plants sold in Florida spread into natural areas and crowd out native habitat. Brazilian pepper and coral ardisia are well-known examples. I check plant choices against the Florida Invasive Species Council list and UF/IFAS guidance, and I'm happy to suggest non-invasive alternatives for plants you already have.</p>
       <p><a class="text-link" href="https://gardeningsolutions.ifas.ufl.edu/care/weeds-and-invasive-plants/plant-this-not-that/" rel="noopener">UF/IFAS: Plant this, not that ${icons.arrow}</a></p>
     </div>
     <div class="stack">
@@ -385,7 +406,7 @@ export function plantsGuide({ plants, art }) {
     <ul class="small">${sources.map((s) => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.label)}</a></li>`).join("")}</ul>
   </div>
 </section>
-${ctaBand({ title: "Not sure what will grow in your yard?", text: "Tell us about your sun, soil and the look you want. We'll suggest plants that suit both your space and your style." })}`,
+${ctaBand({ title: "Not sure what will grow in your yard?", text: "Tell me about your sun, soil and the look you want. I'll suggest plants that suit both your space and your style." })}`,
   };
 }
 
@@ -393,21 +414,21 @@ ${ctaBand({ title: "Not sure what will grow in your yard?", text: "Tell us about
 const opts = (list, placeholder) =>
   `<option value="">${esc(placeholder)}</option>` + list.map((o) => `<option>${esc(o)}</option>`).join("");
 
-export function contact({ site }) {
+export function contact({ site, owner }) {
   const lines = contactLines(site);
   const hasDirect = Boolean(site.email || site.phone);
   return {
     path: "/contact/",
     title: "Contact & project inquiry",
-    description: `Tell ${site.name} about your landscaping project in Broward County, Florida. Send a project inquiry and we'll reply using your preferred contact method.`,
+    description: `Tell ${site.name} about your landscaping project in Broward County, Florida. Send a short project inquiry and get a reply by your preferred contact method.`,
     schema: true,
     scripts: `<script type="module" src="/js/inquiry-form.js"></script>`,
     body: `
 <header class="page-header">
   <div class="container">
     <span class="eyebrow">Contact</span>
-    <h1>Tell us about your landscaping project</h1>
-    <p class="lede">Whether you're refreshing a small garden or imagining a larger transformation, we'd love to hear what you have in mind.</p>
+    <h1>Tell me about your landscaping project</h1>
+    <p class="lede">Have something in mind for your yard? Tell me a little about it. Whether it's a small garden refresh or a bigger change, I'd love to hear your ideas.</p>
   </div>
 </header>
 
@@ -416,7 +437,7 @@ export function contact({ site }) {
     <div id="inquiry">
       <div id="form-status" class="alert" role="alert" tabindex="-1" hidden></div>
       <form class="form" id="inquiry-form" action="/api/inquiry" method="post" novalidate>
-        <p class="small muted">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required. Please give us an email address or a phone number so we can reply.</p>
+        <p class="small muted">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required. Please include an email address or a phone number so I can reply.</p>
 
         <fieldset>
           <legend>About you</legend>
@@ -456,7 +477,7 @@ export function contact({ site }) {
             <div class="field" data-field="location">
               <label for="f-location">Project location <span class="req" aria-hidden="true">*</span></label>
               <input class="input" id="f-location" name="location" type="text" autocomplete="address-level2" required maxlength="${LIMITS.location}" placeholder="City or ZIP, e.g. Plantation or 33324" aria-describedby="h-location e-location">
-              <p class="hint" id="h-location">We work in Broward County, Florida.</p>
+              <p class="hint" id="h-location">I work in Broward County, Florida.</p>
               <p class="field-error" id="e-location"></p>
             </div>
             <div class="field" data-field="projectType">
@@ -496,7 +517,7 @@ export function contact({ site }) {
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" id="submit-btn"><span class="spinner" aria-hidden="true"></span><span class="btn-label">Send my project inquiry</span></button>
-          <p class="small muted">We'll only use your details to reply to this inquiry. See our <a href="/privacy/">privacy notice</a>.</p>
+          <p class="small muted">Your details are used only to reply to this inquiry. See the <a href="/privacy/">privacy notice</a>.</p>
         </div>
       </form>
     </div>
@@ -505,14 +526,14 @@ export function contact({ site }) {
       <div class="info-card">
         <h2 style="font-size:var(--text-xl)">Contact details</h2>
         <dl class="info-list">${lines.map((l) => `<div><dt>${l.label}</dt><dd>${l.html}</dd></div>`).join("")}</dl>
-        ${hasDirect ? "" : `<p class="small muted">The project form is the best way to reach us.</p>`}
+        ${hasDirect ? "" : `<p class="small muted">The project form is the best way to reach me.</p>`}
       </div>
       <div class="info-card" style="background:var(--color-white)">
         <h2 style="font-size:var(--text-xl)">What happens next</h2>
         <ol class="small" style="margin:0;padding-left:1.1em;display:grid;gap:var(--space-2)">
-          <li>Your inquiry comes straight to the owner, not a call center.</li>
-          <li>We read it carefully and reply using the contact method you chose.</li>
-          <li>If it's a good fit, we'll set up a time to talk about your space.</li>
+          <li>Your message comes straight to me, ${esc(owner.name)}, not a call center.</li>
+          <li>I read every inquiry myself and reply the way you prefer.</li>
+          <li>If it's a good fit, we'll find a time to look at your space together.</li>
         </ol>
       </div>
     </aside>
@@ -558,7 +579,7 @@ export function thankYou() {
 <section class="section"><div class="container prose">
   <div class="alert alert--success form-success" style="text-align:left;justify-items:start">${icons.check}
     <h1 style="font-size:var(--text-2xl)">Thank you. Your inquiry was sent.</h1>
-    <p>We'll read it carefully and get back to you using the contact method you chose.</p>
+    <p>I'll read it carefully and get back to you using the contact method you chose.</p>
   </div>
   <p><a class="text-link" href="/south-florida-plants/">Browse the South Florida plant guide while you wait ${icons.arrow}</a></p>
 </div></section>`,

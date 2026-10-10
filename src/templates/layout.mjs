@@ -17,9 +17,6 @@ const FONT_URL =
 
 export const icons = {
   arrow: `<svg class="arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  person: `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 17c1-3.2 3.6-4.8 6.5-4.8s5.5 1.6 6.5 4.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  pencil: `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16l1-4 8.5-8.5a2.1 2.1 0 0 1 3 3L8 15l-4 1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
-  leaf: `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16c0-7 4.5-11 12-12 0 7.5-4 12-11 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 16l7-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
   info: `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 6.2v.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>`,
   check: `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 24.5l6 6 12-13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 };
@@ -123,7 +120,7 @@ function footer(site, year) {
       </div>
       <div>
         <h2>Explore</h2>
-        <ul class="footer-links">${NAV.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join("")}</ul>
+        <ul class="footer-links">${NAV.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join("")}${site.ownerLink ? `<li><a href="${site.ownerLink.href}">${esc(site.ownerLink.label)}</a></li>` : ""}</ul>
       </div>
       <div>
         <h2>Get in touch</h2>
@@ -158,7 +155,7 @@ ${page.scripts || ""}
 `;
 }
 
-export const ctaBand = ({ title = "Have a landscaping idea? We'd love to hear about it.", text = "Whether it's one garden bed or the whole yard, tell us what you have in mind. We'll listen first and help you figure out the next step." } = {}) => `
+export const ctaBand = ({ title = "Have a landscaping idea? I'd love to hear about it.", text = "Whether it's one garden bed or the whole yard, tell me what you have in mind. I'll listen first and help you figure out a good next step." } = {}) => `
 <section class="section" aria-labelledby="cta-title">
   <div class="container">
     <div class="cta-band">

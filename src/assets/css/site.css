@@ -186,13 +186,43 @@ a:hover { color: var(--color-leaf-900); }
 /* ---------- Intro / split ---------- */
 .split { display: grid; gap: var(--space-7); align-items: center; }
 @media (min-width: 56em) { .split { grid-template-columns: 1fr 1fr; gap: var(--space-8); } }
-.points { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
-.points li { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--space-4); align-items: start; }
-.points .icon { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--color-sage-100); color: var(--color-leaf-700); display: grid; place-items: center; }
-.points .icon svg { width: 1.25rem; height: 1.25rem; }
-.points strong { display: block; font-weight: 600; color: var(--color-leaf-900); margin-bottom: 2px; }
-.quote-panel { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-sand); display: grid; gap: var(--space-4); }
-.quote-panel blockquote { margin: 0; font: italic 400 var(--text-xl)/1.4 var(--font-display); color: var(--color-leaf-900); }
+/* Owner introduction (Home) */
+.owner-grid { display: grid; gap: var(--space-7); align-items: start; }
+.portrait { position: relative; margin: 0; width: 100%; max-width: 28rem; justify-self: center; padding: 0 1rem 1rem 0; }
+.portrait::before { content: ""; position: absolute; inset: 1rem 0 0 1rem; border: 1px solid var(--color-sage-300); border-radius: var(--radius-lg); }
+.portrait-frame { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-sage-100); box-shadow: var(--shadow-soft); }
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+.portrait-caption {
+  position: absolute; left: var(--space-4); bottom: calc(1rem + var(--space-4)); max-width: calc(100% - 3rem);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);
+  background: rgb(251 250 246 / 0.94); font: 500 1rem/1.3 var(--font-display); color: var(--color-leaf-900);
+}
+.owner-copy { display: grid; gap: var(--space-4); max-width: 36rem; align-content: start; }
+.owner-greeting { margin-top: var(--space-2); font: italic 400 var(--text-xl)/1.3 var(--font-display); color: var(--color-leaf-700); }
+.owner-story { display: grid; gap: var(--space-4); }
+.owner-more summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 2.75rem;
+  font-weight: 600; color: var(--color-leaf-700); border-bottom: 1px solid var(--color-sage-300);
+}
+.owner-more summary::-webkit-details-marker { display: none; }
+.owner-more summary::after { content: "+"; font: 400 1.35rem/1 var(--font-display); color: var(--color-terracotta); transition: transform var(--duration) var(--ease); }
+.owner-more[open] summary::after { transform: rotate(45deg); }
+.owner-more summary:hover { border-color: currentColor; }
+.owner-more .less, .owner-more[open] .more-label { display: none; }
+.owner-more[open] .less { display: inline; }
+.owner-more[open] > .owner-story { margin-top: var(--space-4); }
+.signature { font: italic 400 1.6rem/1 var(--font-display); color: var(--color-leaf-900); }
+.owner-cta {
+  margin-top: var(--space-3); padding: var(--space-5); border-radius: var(--radius-lg);
+  background: var(--color-white); border: 1px solid var(--color-stone);
+  display: grid; gap: var(--space-3); justify-items: start;
+}
+.owner-cta h3 { font-size: var(--text-xl); }
+.owner-cta p { color: var(--color-ink-muted); }
+@media (min-width: 56em) {
+  .owner-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: var(--space-8); }
+  .portrait { position: sticky; top: 6.5rem; }
+}
 
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: var(--space-5); }

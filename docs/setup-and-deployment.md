@@ -91,6 +91,30 @@ After each deploy that touches the form or settings:
 4. Submit the form with an empty name and confirm you see inline errors.
 5. Check Netlify → Logs → Functions → `inquiry` for `delivery succeeded`. (Logs show only channel status, never customer details.)
 
+## Updating Robert's story and photo
+
+Everything in the Home page's "Meet Robert" section comes from [`content/owner.json`](../content/owner.json): headline, greeting, the always-visible `intro` paragraphs, the `story` paragraphs behind "Read more of my story", the sign-off and the CTA. Edit the text there, keep it factual, and follow [brand-voice.md](brand-voice.md).
+
+**Replacing the placeholder with a real photo:**
+
+1. Take a portrait outdoors, ideally Robert standing in a lush South Florida garden in soft morning or late-afternoon light. Use a real photo of Robert, never a stock model.
+2. Crop it to 4:5 (portrait) and save two WebP files: **800×1000** and **480×600**, each under about 200 KB. Free tools like [Squoosh](https://squoosh.app) can resize and convert.
+3. Save them as `src/assets/img/owner/robert-800.webp` and `src/assets/img/owner/robert-480.webp`.
+4. In `content/owner.json`, replace `"photo": null` with:
+   ```json
+   "photo": {
+     "src": "/img/owner/robert-800.webp",
+     "srcSmall": "/img/owner/robert-480.webp",
+     "width": 800,
+     "height": 1000,
+     "alt": "Robert standing beside a bed of firebush and coontie in a South Florida garden"
+   }
+   ```
+   Write `alt` to describe what's actually in the photo.
+5. Run `npm run check`. The build stops if the photo files are missing or `alt` is empty.
+
+The caption "Robert — Owner & Landscaping Enthusiast" stays under the photo; change `name` or `role` in the same file to adjust it.
+
 ## Adding your own photos
 
 1. Save each photo as a 4:3 WebP or JPEG in two sizes, about 800px and 480px wide, each under 200 KB. Put them in `src/assets/img/photos/`.

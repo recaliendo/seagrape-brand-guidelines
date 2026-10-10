@@ -57,6 +57,22 @@ function securityHeaders() {
 `;
 }
 
+/** Stops the build if the owner section is missing required text, or a photo lacks its files or alt text. */
+export function checkOwner(owner) {
+  const problems = [];
+  for (const k of ["name", "role", "headline", "greeting", "signoff"]) if (!owner[k]) problems.push(`content/owner.json: "${k}" is required.`);
+  if (!owner.intro?.length) problems.push('content/owner.json: "intro" needs at least one paragraph.');
+  for (const k of ["title", "text", "button"]) if (!owner.cta?.[k]) problems.push(`content/owner.json: "cta.${k}" is required.`);
+  if (owner.photo) {
+    if (!owner.photo.alt) problems.push("content/owner.json: photo.alt is required (describe the photo, e.g. where Robert is standing).");
+    for (const src of [owner.photo.src, owner.photo.srcSmall].filter(Boolean)) {
+      if (!existsSync(join(ROOT, "src/assets", src))) problems.push(`content/owner.json: file not found: src/assets${src}`);
+    }
+    if (!owner.photo.src) problems.push("content/owner.json: photo.src is required.");
+  }
+  if (problems.length) throw new Error("Owner content problems:\n  " + problems.join("\n  "));
+}
+
 /** Stops the build if a gallery item could misrepresent a photo or is missing its file, alt text or credit. */
 export function checkGallery(gallery) {
   const problems = [];
@@ -75,7 +91,7 @@ export function checkGallery(gallery) {
   if (problems.length) throw new Error("Gallery content problems:\n  " + problems.join("\n  "));
 }
 
-export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, reviewsData, galleryData, sampleReviews = false, quiet = false } = {}) {
+export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, reviewsData, galleryData, ownerData, sampleReviews = false, quiet = false } = {}) {
   const log = quiet ? () => {} : console.log;
   if (sampleReviews && process.env.CONTEXT === "production") throw new Error("Sample reviews can't be used in a production build.");
   const site = { ...(await readJson("content/site.json")), ...siteOverrides };
@@ -84,7 +100,10 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, r
   const plants = await readJson("content/plants.json");
   const reviewsSource = reviewsData || (await readJson(sampleReviews ? "content/reviews.sample.json" : "content/reviews.json"));
   const reviews = prepareReviews(reviewsSource, { allowSamples: sampleReviews });
+  const owner = ownerData || (await readJson("content/owner.json"));
   checkGallery(gallery);
+  checkOwner(owner);
+  site.ownerLink = { label: `Meet ${owner.name}`, href: `/#${pages.ownerAnchor(owner)}` };
   site.url = (site.url || process.env.URL || "").replace(/\/$/, "");
 
   await rm(outDir, { recursive: true, force: true });
@@ -117,7 +136,7 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, r
   await cp(join(ROOT, "logo/seagrape-favicon.svg"), join(outDir, "favicon.svg"));
 
   // Pages.
-  const ctx = { site, services, gallery, plants, reviews, art: ILLUSTRATION_SIZES };
+  const ctx = { site, services, gallery, plants, reviews, owner, art: ILLUSTRATION_SIZES };
   const list = [
     pages.home(ctx),
     pages.servicesProjects(ctx),
@@ -151,6 +170,7 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, r
   if (site.nameIsPlaceholder) warnings.push('Business name is still the placeholder. Update "name" in content/site.json and set "nameIsPlaceholder" to false.');
   if (!site.email && !site.phone) warnings.push("No public email or phone in content/site.json. Visitors can only reach you through the form.");
   if (!site.url) warnings.push("No site URL set, so canonical links and sitemap.xml were skipped. Netlify sets this automatically during deploys.");
+  if (!owner.photo) warnings.push(`No photo of ${owner.name} yet, so the illustrated placeholder is showing. See docs/setup-and-deployment.md.`);
   warnings.push(...reviews.warnings);
   if (sampleReviews) warnings.push("SAMPLE REVIEWS ARE SHOWING. Development preview only; never deploy this build.");
   else if (!reviews.items.length) warnings.push("No verified reviews yet, so the testimonials section is hidden.");

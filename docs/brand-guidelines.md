@@ -6,10 +6,12 @@
 
 **Mission:** Beautiful landscaping should feel personal, natural and thoughtfully designed for the people who enjoy it.
 
-**Positioning:** A small, owner-operated landscape design studio in Broward County, Florida. We stand out through personal attention, creative solutions and plant knowledge, not size or volume.
+**Positioning:** A small, owner-operated landscape design business in Broward County, Florida, run by Robert. It stands out through personal attention, creative ideas and plant knowledge, not size or volume.
 
-**Primary message:** *Thoughtful landscaping, personally designed.*
-**Supporting line:** *Personal attention from the people caring for your landscape.*
+**Brand promise:** Thoughtful landscaping, personal attention, and a genuine love for South Florida's natural beauty.
+
+**Primary message (tagline):** *Thoughtful landscaping, personally designed.*
+**Supporting line:** *Personal attention from the person caring for your landscape.*
 
 We chose this direction over "Rooted in South Florida. Inspired by You." because it names both halves of the promise, care and design, in plain words.
 
@@ -33,16 +35,15 @@ We chose this direction over "Rooted in South Florida. Inspired by You." because
 
 ## Voice and tone
 
-Warm, genuine, confident and clear. Write the way a knowledgeable neighbor talks.
+The full guide is **[brand-voice.md](brand-voice.md)**: personality, the five voice principles, when to write as "I", tone by section, banned phrases, before-and-after examples, and rules for AI-written content.
 
-| Do | Don't |
-|---|---|
-| "When you reach out, you talk with the person who will plan and plant your garden." | "Our team of industry-leading professionals delivers premier solutions." |
-| "Small projects are welcome." | "No job too big or too small!" |
-| "We'll talk honestly about scope and timing." | "Fast, guaranteed results." |
-| "Coontie's seeds and roots are poisonous, so place it thoughtfully around pets." | "100% pet-safe plants." (unless verified) |
+In short: Robert, a down-to-earth Wisconsin transplant who loves South Florida's plants, talking to a neighbor about their yard. Warm, quietly knowledgeable, specific, never pushy.
 
-**Never claim** anything that hasn't been confirmed by the owner: years of experience, numbers of clients, awards, rankings ("#1 in Broward"), licenses, certifications, insurance, reviews, ratings, or completed projects. When the owner has real credentials or reviews, add them with proof and keep them current.
+**Never claim** anything Robert hasn't confirmed: years of experience, numbers of clients, awards, rankings ("#1 in Broward"), licenses, certifications, insurance, reviews, ratings, or completed projects.
+
+## Owner introduction
+
+The Home page's "Meet Robert" section is the brand's personal center. Its text lives in [`content/owner.json`](../content/owner.json) and covers only facts Robert provided. Until a real photo exists it shows an illustrated garden placeholder captioned "Robert — Owner & Landscaping Enthusiast". Never use a stock photo of a person to stand in for him.
 
 ## Visual identity
 

@@ -139,7 +139,7 @@ if (form) {
       form.reset();
       form.hidden = true;
       statusBox.className = "alert alert--success form-success";
-      statusBox.innerHTML = `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 24.5l6 6 12-13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h2>Thank you. Your inquiry was sent.</h2><p>We'll read it carefully and get back to you using the contact method you chose.</p>`;
+      statusBox.innerHTML = `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 24.5l6 6 12-13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h2>Thank you. Your inquiry was sent.</h2><p>I'll read it carefully and get back to you using the contact method you chose.</p>`;
       statusBox.hidden = false;
       statusBox.focus();
       statusBox.scrollIntoView({ block: "center" });

@@ -27,6 +27,7 @@ No `npm install` needed: zero dependencies, Node 20+.
 | SMS alerts (Twilio) | ⚙️ Optional; built and tested with mocks; needs Twilio credentials and carrier registration |
 | Real business name, email, phone | ⛔ **Launch blocker:** placeholders in `content/site.json` |
 | Inspiration gallery | ✅ 8 licensed, credited photos labeled "Landscape design inspiration" ([credits](docs/image-credits.md)) |
+| Meet Robert section | ✅ Story live; illustrated placeholder until Robert's photo is added ([how](docs/setup-and-deployment.md#updating-roberts-story-and-photo)) |
 | Customer reviews | ✅ Ready; hidden until you add real, permitted reviews to `content/reviews.json` |
 | Your own project photos | ⏳ Add as `"kind": "project"` once you have them |
 | Hosting | ⚙️ Ready for Netlify; not yet deployed |
@@ -36,7 +37,7 @@ Until email is configured, the form tells visitors it isn't connected yet. It ne
 ## Project structure
 
 ```
-content/            Editable business info, services, gallery, plants, reviews (JSON)
+content/            Editable business info, Robert's story (owner.json), services, gallery, plants, reviews (JSON)
 src/assets/css/     tokens.css (single source of truth for brand styling) + site.css
 src/assets/js/      site.js (menu, motion) + inquiry-form.js (form behavior)
 src/templates/      layout.mjs (head, header, footer) + pages.mjs (page content)
@@ -52,7 +53,8 @@ docs/               Brand, UI, UX, content and setup guides
 
 ## Documentation
 
-- [Brand guidelines](docs/brand-guidelines.md): positioning, voice, color, type, logo
+- [Brand voice](docs/brand-voice.md): how Robert sounds; read before writing any copy
+- [Brand guidelines](docs/brand-guidelines.md): positioning, color, type, logo
 - [UI guidelines](docs/ui-guidelines.md): tokens, layout, components, accessibility
 - [UX guidelines](docs/ux-guidelines.md): journey, navigation, form design
 - [Content guidelines](docs/content-guidelines.md): writing, plant accuracy, photo honesty, SEO
@@ -68,5 +70,6 @@ docs/               Brand, UI, UX, content and setup guides
 - [ ] Live test inquiry received ([verification steps](docs/setup-and-deployment.md#production-verification))
 - [ ] Privacy notice reviewed by the owner
 - [ ] *(Optional)* Twilio configured and registered
+- [ ] Robert's portrait added to `content/owner.json`
 - [ ] *(When available)* Original project photos added
 - [ ] *(When available)* First real customer reviews added with permission; Google review link in `content/reviews.json`

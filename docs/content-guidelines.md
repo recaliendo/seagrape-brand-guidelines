@@ -2,9 +2,9 @@
 
 ## Voice and tone
 
-Warm, genuine, confident, knowledgeable, clear. Short paragraphs (2–4 sentences). Active voice. Talk to "you" and about "we."
+Follow **[brand-voice.md](brand-voice.md)**. It defines Robert's voice, when to write as "I" versus neutral copy, tone by section, and the banned-phrase list (checked by `tests/voice.test.mjs`).
 
-Avoid corporate jargon ("solutions", "leverage", "premier"), aggressive sales language ("Act now!"), luxury exaggeration ("estate-caliber"), and filler ("In today's fast-paced world…").
+Mechanics: short paragraphs (2–4 sentences), active voice, talk to "you".
 
 ## Headlines
 
@@ -20,7 +20,7 @@ Each service in `content/services.json` has:
 |---|---|
 | `title` | 2–4 words, plain language |
 | `summary` | One sentence on the benefit to the customer |
-| `description` | 2–3 sentences: what we do and why it helps |
+| `description` | 2–3 sentences in Robert's first person: what he does and why it helps |
 | `goodFor` | Who it suits, in a short phrase |
 
 Don't describe regulated or specialized work (tree removal, irrigation installation, pesticide or fertilizer application, hardscape construction) unless the owner confirms they offer it and hold any required licenses.

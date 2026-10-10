@@ -69,7 +69,7 @@ test("built pages label photos as inspiration, show credits, and never claim com
   assert.match(services, /not projects completed by/);
   assert.equal((services.match(/class="credit"/g) || []).length, n);
   for (const g of gallery.items) assert.ok(services.includes(g.credit.sourceUrl.replace(/&/g, "&amp;")), `${g.id} credit link`);
-  assert.match(home, /photos of public gardens, not our projects/);
+  assert.match(home, /photos of public gardens, not completed client projects/);
   assert.match(services, /Inspired by something you see\? Let's design something just for you\./);
   assert.match(services, /<a class="btn btn-primary" href="\/contact\/#inquiry">Start Your Project/);
 });

@@ -136,6 +136,25 @@ const scenes = {
       ${roundLeaf(740, 940, 64, p.leaf8, p.terra)}${roundLeaf(820, 900, 60, p.leaf7, p.terra)}
     `);
   },
+  // Stand-in for the owner's portrait: foliage framing an empty, softly lit garden. No figure, so it's never mistaken for a photo of Robert.
+  "portrait-placeholder"(p) {
+    const r = rng(19);
+    return svg(800, 1000, "Illustrated garden backdrop, a placeholder for Robert's portrait", `
+      <rect width="800" height="1000" fill="${p.sage1}"/>
+      <circle cx="400" cy="360" r="210" fill="${p.paper}"/>
+      <circle cx="400" cy="360" r="210" fill="${p.blush}" opacity=".25"/>
+      <path d="M0 640 C220 600 580 610 800 640 V1000 H0Z" fill="${p.sage3}" opacity=".7"/>
+      ${palm(110, 760, 640, p.wood, p.leaf7, 26)}
+      ${palm(690, 780, 560, p.wood, p.leaf8, -22)}
+      ${[0, 1, 2, 3, 4, 5].map((i) => strap(40 + i * 18, 1000, 330 + i * 22, -6 + i * 7, 26, i % 2 ? p.leaf7 : p.leaf8, 0.12)).join("")}
+      ${[0, 1, 2, 3, 4].map((i) => leaf(780, 1000, 280 + r() * 60, 52, -48 + i * 11, i % 2 ? p.leaf8 : p.leaf7)).join("")}
+      <path d="M0 860 C200 820 600 830 800 860 V1000 H0Z" fill="${p.sand}"/>
+      ${fan(250, 880, 150, p.sage5, 15)}
+      ${blades(560, 880, 11, 150, p.sage5, r)}${plumes(560, 870, 120, 180, p.blush, r)}
+      ${roundLeaf(120, 930, 66, p.leaf7, p.terra)}${roundLeaf(380, 960, 58, p.leaf8, p.terra)}${roundLeaf(690, 940, 70, p.leaf7, p.terra)}
+      <g transform="translate(372 330) scale(.56)" opacity=".85"><path d="M50 8C76 8 94 28 94 52C94 76 74 94 50 94C28 94 8 78 8 54C8 40 14 28 24 20C32 13 40 8 50 8Z" fill="${p.leaf7}"/><g stroke="${p.blush}" stroke-linecap="round" fill="none"><path d="M50 90V30" stroke-width="4"/><path d="M50 70L30 53M50 70L70 53M50 51L34 38M50 51L66 38" stroke-width="3.2"/></g></g>
+    `);
+  },
   plan(p) {
     const r = rng(11);
     let circles = "";
@@ -319,6 +338,7 @@ export function renderIllustrations(tokens) {
 
 export const ILLUSTRATION_SIZES = Object.fromEntries([
   ["hero", [800, 1000]],
-  ...Object.keys(scenes).filter((k) => k !== "hero").map((k) => [k, [800, 600]]),
+  ["portrait-placeholder", [800, 1000]],
+  ...Object.keys(scenes).filter((k) => k !== "hero" && k !== "portrait-placeholder").map((k) => [k, [800, 600]]),
   ...Object.keys(plants).map((k) => [k, [600, 400]]),
 ]);

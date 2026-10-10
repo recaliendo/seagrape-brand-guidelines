@@ -8,12 +8,14 @@
 |---|---|---|
 | Discover | Home hero, Google results | "This is a local landscape designer who'll listen to me." |
 | Explore ideas | Home inspiration mosaic → Services & Projects gallery | "I can picture what my yard could look like." |
-| Build trust | Owner-operated intro, plant guide, honest photo labels, customer reviews (once real ones exist) | "They know South Florida plants, real people liked working with them, and they don't oversell." |
+| Build trust | Meet Robert, plant guide, honest photo labels, customer reviews (once real ones exist) | "They know South Florida plants, real people liked working with them, and they don't oversell." |
 | Submit | Contact page form | "This is quick, and I know what happens next." |
 
 ### Home page order
 
-Hero → Small by design → Services → **Inspiration mosaic** → How we work → Plants → **Customer reviews** (hidden until real ones exist) → final CTA.
+Hero → **Meet Robert** → Services → **Inspiration mosaic** → How we work → Plants → **Customer reviews** (hidden until real ones exist) → final CTA.
+
+Meet Robert comes right after the hero so visitors meet the person before browsing services. The full story stays on the Home page (an excerpt plus "Read more of my story") rather than a separate About page, which keeps the main navigation at four items. The footer links to it as "Meet Robert" (`/#meet-robert`).
 
 Reviews sit just before the final CTA so trust peaks right before the ask. With no reviews, the page flows straight from Plants to the CTA with no gap or empty heading.
 

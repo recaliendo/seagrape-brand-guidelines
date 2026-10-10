@@ -1,0 +1,25 @@
+{
+  "_help": "Robert's introduction on the Home page. Edit the wording here; keep it factual (see docs/brand-voice.md). 'intro' paragraphs are always visible; 'story' paragraphs appear under 'Read more of my story'. To add a real photo, see docs/setup-and-deployment.md#updating-roberts-story-and-photo. Leave 'photo' as null to show the illustrated placeholder.",
+  "name": "Robert",
+  "role": "Owner & Landscaping Enthusiast",
+  "eyebrow": "Meet Robert",
+  "headline": "A personal passion for South Florida landscapes",
+  "greeting": "Hi, I'm Robert.",
+  "intro": [
+    "Years ago I made the move from Wisconsin to South Florida. Like a lot of people who end up here, I fell for the sunshine, the warm weather and the beaches first.",
+    "Then I started noticing the plants. From the Everglades to the tropical gardens and native plants growing right in our neighborhoods, there's more variety here than I ever imagined. It hasn't stopped inspiring me."
+  ],
+  "story": [
+    "Over the years I've worked in hospitality, sprinkler installation and lawn care. Those jobs taught me to enjoy hands-on work, to pay attention to the details and, most of all, to take good care of people.",
+    "What started as admiring South Florida's natural beauty grew into a real love for landscaping and plants, and for creating outdoor spaces that feel personal and inviting.",
+    "For me, landscaping isn't just a job. It's a chance to work with nature, try out creative ideas and help people enjoy their own yard a little more.",
+    "Every property is different, and I think every project deserves careful attention, whether it's a whole new landscape or one small corner that needs some fresh life."
+  ],
+  "signoff": "Robert",
+  "cta": {
+    "title": "Let's bring your landscaping ideas to life.",
+    "text": "Whether you have a small garden refresh in mind or a bigger vision for your outdoor space, I'd love to hear what you're thinking.",
+    "button": "Tell Me About Your Project"
+  },
+  "photo": null
+}
