@@ -12,7 +12,7 @@
     "dev": "node scripts/dev.mjs",
     "dev:mock": "node scripts/dev.mjs --mock",
     "dev:samples": "node scripts/dev.mjs --mock --sample-reviews",
-    "test": "node --test \"tests/*.test.mjs\"",
+    "test": "node --test tests/*.test.mjs",
     "check": "npm run build && npm test"
   }
 }

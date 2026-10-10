@@ -1,0 +1,25 @@
+# Builds the site and runs the test suite on every push and pull request.
+# No secrets are needed: email/SMS providers are mocked in tests.
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build and test
+        run: npm run check
