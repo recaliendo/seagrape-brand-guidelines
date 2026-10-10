@@ -24,6 +24,7 @@
   --color-terracotta: #B8694C;  /* decorative only: rules, dots, illustration */
   --color-terracotta-text: #974F37; /* accessible terracotta for small text */
   --color-wood: #9C7A5B;
+  --color-blush: #E3B7A6;      /* accent on dark green: hero italic, hero CTA */
 
   /* Text */
   --color-ink: #26302A;         /* body text */
@@ -48,6 +49,7 @@
   --text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);  /* h3 */
   --text-2xl: clamp(1.75rem, 1.35rem + 1.3vw, 2.75rem);  /* h2 */
   --text-3xl: clamp(2.375rem, 1.6rem + 2.9vw, 4.5rem);   /* h1 */
+  --text-hero: clamp(2.75rem, 1.5rem + 3.6vw, 5.25rem);  /* home hero h1 */
 
   --leading-tight: 1.12;
   --leading-snug: 1.3;
@@ -64,7 +66,7 @@
   --space-7: 3rem;
   --space-8: 4.5rem;
   --space-9: 7rem;
-  --section-space: clamp(var(--space-8), 8vw, var(--space-9));
+  --section-space: clamp(3rem, 2rem + 3.5vw, 5rem);
   --gutter: clamp(1rem, 4vw, 2.5rem);
 
   /* Layout */
