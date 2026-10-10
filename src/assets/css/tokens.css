@@ -1,0 +1,88 @@
+/*
+  Seagrape design tokens: the single source of truth for brand styling.
+  Change a value here and it updates everywhere. Documented in docs/ui-guidelines.md.
+  Concept: an airy botanical studio. Warm white paper, sage and foliage greens,
+  muted terracotta used sparingly, serif headlines, arched image frames.
+*/
+:root {
+  /* Neutrals */
+  --color-canvas: #FBFAF6;      /* warm white page background */
+  --color-ivory: #F6F2EA;       /* alternate section background */
+  --color-sand: #EDE6D8;        /* soft panels, image mats */
+  --color-stone: #DDD5C5;       /* borders and dividers */
+  --color-white: #FFFFFF;       /* cards and form fields */
+
+  /* Greens */
+  --color-sage-100: #E8EEE4;
+  --color-sage-300: #BCCAB5;
+  --color-sage-500: #7F9479;
+  --color-leaf-700: #3E5E48;    /* primary: buttons, links */
+  --color-leaf-800: #2F4B39;    /* primary hover */
+  --color-leaf-900: #1F3529;    /* headings, footer */
+
+  /* Accents */
+  --color-terracotta: #B8694C;  /* decorative only: rules, dots, illustration */
+  --color-terracotta-text: #974F37; /* accessible terracotta for small text */
+  --color-wood: #9C7A5B;
+
+  /* Text */
+  --color-ink: #26302A;         /* body text */
+  --color-ink-muted: #56615A;   /* secondary text */
+  --color-on-dark: #F6F2EA;
+
+  /* States */
+  --color-error: #A3352A;
+  --color-error-bg: #FBEDEA;
+  --color-success: #2F6B45;
+  --color-success-bg: #EAF3EC;
+  --color-focus: #2F6B8A;
+
+  /* Type */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.8125rem;   /* 13px labels */
+  --text-sm: 0.9375rem;   /* 15px captions */
+  --text-base: 1.0625rem; /* 17px body */
+  --text-lg: 1.25rem;     /* 20px lede */
+  --text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);  /* h3 */
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);    /* h2 */
+  --text-3xl: clamp(2.375rem, 1.7rem + 3vw, 4rem);       /* h1 */
+
+  --leading-tight: 1.12;
+  --leading-snug: 1.3;
+  --leading-body: 1.65;
+  --tracking-label: 0.14em;
+
+  /* Space (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --section-space: clamp(var(--space-8), 8vw, var(--space-9));
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* Layout */
+  --container: 72rem;   /* 1152px */
+  --measure: 38rem;     /* comfortable reading width */
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-md) var(--radius-md);
+
+  /* Depth & motion */
+  --shadow-soft: 0 1px 2px rgb(31 53 41 / 0.05), 0 10px 30px -12px rgb(31 53 41 / 0.14);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration: 220ms;
+
+  /* Breakpoints (reference only; CSS can't use variables in media queries):
+     sm 40em (640px) · md 56em (896px) · lg 72em (1152px) */
+}

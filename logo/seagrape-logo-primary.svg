@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 110" width="720" height="220">
-  <g transform="translate(0 5)">
-    <path d="M50 8 C76 8 94 28 94 52 C94 76 74 94 50 94 C28 94 8 78 8 54 C8 40 14 28 24 20 C32 13 40 8 50 8 Z" fill="#1F4D3A"/>
-    <g stroke="#D9472B" stroke-linecap="round" fill="none">
-      <path d="M50 92 L50 30" stroke-width="4"/>
-      <path d="M50 70 L28 52 M50 70 L72 52 M50 52 L32 38 M50 52 L68 38" stroke-width="3.2"/>
-    </g>
-  </g>
-  <text x="114" y="62" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="46" fill="#1F4D3A" letter-spacing="-1">Seagrape</text>
-  <text x="116" y="88" font-family="Atkinson Hyperlegible, sans-serif" font-weight="700" font-size="13.5" fill="#4E5E55" letter-spacing="3.2">LAWN &amp; LANDSCAPE</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 110" width="760" height="220"><g transform="translate(4 5)"><path d="M50 8C76 8 94 28 94 52C94 76 74 94 50 94C28 94 8 78 8 54C8 40 14 28 24 20C32 13 40 8 50 8Z" fill="#3E5E48"/><g stroke="#E3B7A6" stroke-linecap="round" fill="none"><path d="M50 90V30" stroke-width="4"/><path d="M50 70L30 53M50 70L70 53M50 51L34 38M50 51L66 38" stroke-width="3.2"/></g></g><text x="118" y="60" font-family="Newsreader, Georgia, serif" font-weight="500" font-size="46" fill="#1F3529" letter-spacing="-0.5">Seagrape</text><text x="120" y="86" font-family="Figtree, Helvetica, sans-serif" font-weight="600" font-size="12.5" fill="#56615A" letter-spacing="3.4">LANDSCAPE DESIGN</text></svg>

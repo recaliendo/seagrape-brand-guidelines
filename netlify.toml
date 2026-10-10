@@ -1,0 +1,14 @@
+# Netlify deployment. Static pages are built into dist/; the inquiry handler is a Netlify Function.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Secrets (RESEND_API_KEY, etc.) are set in Netlify → Site configuration → Environment variables,
+# never in this file. See .env.example and docs/setup-and-deployment.md.

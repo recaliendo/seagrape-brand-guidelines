@@ -1,0 +1,17 @@
+{
+  "name": "seagrape-landscape-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website and brand system for a small, owner-operated landscape design studio in Broward County, Florida.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:mock": "node scripts/dev.mjs --mock",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "check": "npm run build && npm test"
+  }
+}

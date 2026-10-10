@@ -1,0 +1,53 @@
+{
+  "_help": "Landscape style references for the inspiration gallery. These are illustrations, not completed projects. When you add real project photos, set 'kind' to 'project', add a 'photo' object, and only describe work you actually did. Never label third-party or AI-generated images as your projects.",
+  "items": [
+    {
+      "id": "modern-tropical",
+      "kind": "style",
+      "title": "Modern tropical",
+      "description": "Architectural foliage against clean walls, with strong shapes and plenty of breathing room.",
+      "plants": ["Bird of paradise", "Sabal palm", "Coontie"],
+      "illustration": "modern-tropical"
+    },
+    {
+      "id": "classic-garden",
+      "kind": "style",
+      "title": "Classic & timeless",
+      "description": "Balanced beds, soft rounded hedges and a welcoming path to the door.",
+      "plants": ["Cocoplum", "Simpson's stopper", "Firebush"],
+      "illustration": "classic"
+    },
+    {
+      "id": "natural-florida",
+      "kind": "style",
+      "title": "Natural Florida",
+      "description": "Native plants arranged with care. Water-wise, wildlife-friendly and at home in the local landscape.",
+      "plants": ["Muhly grass", "Sabal palm", "Wild coffee"],
+      "illustration": "natural-florida"
+    },
+    {
+      "id": "minimal-contemporary",
+      "kind": "style",
+      "title": "Minimal & contemporary",
+      "description": "A few well-chosen plants, clean gravel and simple lines. Calm, uncluttered and easy to live with.",
+      "plants": ["Coontie", "Muhly grass"],
+      "illustration": "minimal"
+    },
+    {
+      "id": "colorful-tropical",
+      "kind": "style",
+      "title": "Colorful tropical garden",
+      "description": "Layered foliage in reds, golds and greens, with flowers that bring in butterflies and hummingbirds.",
+      "plants": ["Crotons", "Firebush", "Bromeliads"],
+      "illustration": "colorful"
+    },
+    {
+      "id": "small-space",
+      "kind": "style",
+      "title": "Small-space transformations",
+      "description": "Entryways, courtyards and side yards where every plant and planter counts.",
+      "plants": ["Wild coffee", "Coontie", "Potted palms"],
+      "illustration": "small-space"
+    }
+  ]
+}

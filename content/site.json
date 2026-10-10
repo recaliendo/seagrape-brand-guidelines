@@ -1,0 +1,14 @@
+{
+  "_help": "Business details used on every page, in the footer, in search-engine data and in emails. Leave a value empty (\"\") if you don't have it yet; the site hides it instead of showing a placeholder. See docs/setup-and-deployment.md.",
+  "name": "Seagrape Landscape Design",
+  "shortName": "Seagrape",
+  "nameIsPlaceholder": true,
+  "tagline": "Thoughtful landscaping. Personally designed.",
+  "description": "A small, owner-operated landscape design studio in Broward County, Florida. Personal attention, creative garden design and plants chosen for South Florida.",
+  "email": "",
+  "phone": "",
+  "serviceArea": "Broward County, Florida",
+  "hours": "",
+  "url": "",
+  "social": []
+}
