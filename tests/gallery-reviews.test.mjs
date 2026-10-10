@@ -52,6 +52,18 @@ test("every inspiration photo is recorded in docs/image-credits.md", async () =>
   }
 });
 
+test("every plant profile has a real photo on disk, alt text, a full credit, and a record in image-credits.md", async () => {
+  const plants = JSON.parse(await readFile(join(root, "content/plants.json"), "utf8"));
+  const doc = await readFile(join(root, "docs/image-credits.md"), "utf8");
+  for (const p of plants.items) {
+    assert.ok(p.photo?.src && p.photo?.srcSmall, `${p.id} needs a photo`);
+    for (const src of [p.photo.src, p.photo.srcSmall]) assert.ok(existsSync(join(root, "src/assets", src)), `missing ${src}`);
+    assert.ok(p.photo.alt.length > 20, `${p.id} alt text too short`);
+    for (const k of ["author", "source", "sourceUrl", "license", "licenseUrl"]) assert.ok(p.photoCredit?.[k], `${p.id} photoCredit.${k}`);
+    assert.ok(doc.includes(p.photoCredit.sourceUrl), `${p.id} photo missing from image-credits.md`);
+  }
+});
+
 test("checkGallery rejects inspiration photos without credit or files", () => {
   const bad = { items: [{ ...gallery.items[0], credit: { author: "x" } }] };
   assert.throws(() => checkGallery(bad), /credit\.sourceUrl/);
@@ -64,7 +76,8 @@ test("checkGallery rejects inspiration photos without credit or files", () => {
 test("built pages label photos as inspiration, show credits, and never claim completed projects", async () => {
   const { home, services } = await buildTo();
   const n = gallery.items.filter((g) => g.kind === "inspiration").length;
-  assert.equal((services.match(/<span class="tag">Landscape design inspiration<\/span>/g) || []).length, n);
+  assert.match(services, /Photos labeled <strong>Landscape design inspiration<\/strong>/); // one notice above the grid
+  assert.equal((services.match(/class="card gallery-card"/g) || []).length, n);
   assert.ok(!services.includes("Completed project"));
   assert.match(services, /not projects completed by/);
   assert.equal((services.match(/class="credit"/g) || []).length, n);
@@ -77,7 +90,7 @@ test("built pages label photos as inspiration, show credits, and never claim com
 test("photos use responsive srcset and lazy loading", async () => {
   const { services } = await buildTo();
   const imgs = services.match(/<img [^>]*\/img\/inspiration\/[^>]+>/g) || [];
-  assert.equal(imgs.length, gallery.items.length);
+  assert.ok(imgs.length >= gallery.items.length, "gallery photos plus service-row photos");
   for (const img of imgs) {
     assert.match(img, /srcset="[^"]+-480\.webp 480w, [^"]+-800\.webp 800w"/);
     assert.match(img, /loading="lazy"/);

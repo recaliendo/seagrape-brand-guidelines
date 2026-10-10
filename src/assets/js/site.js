@@ -1,4 +1,4 @@
-// Site-wide behavior: mobile menu, header border on scroll, gentle reveal of below-the-fold content.
+// Site-wide behavior: mobile menu and header border. No scroll animations (docs/DESIGN_AUDIT.md).
 (function () {
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
@@ -34,23 +34,4 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // Only content that starts below the fold is animated, so nothing visible on load is ever hidden.
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!reduce && "IntersectionObserver" in window) {
-    var targets = document.querySelectorAll(".section .card, .section .service, .steps li, .condition, .cta-band");
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    targets.forEach(function (el) {
-      if (el.getBoundingClientRect().top > window.innerHeight) {
-        el.classList.add("reveal");
-        io.observe(el);
-      }
-    });
-  }
 })();

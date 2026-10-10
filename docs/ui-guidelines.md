@@ -35,7 +35,7 @@ Sections alternate backgrounds (`.section`, `.section--ivory`, `.section--sage`)
 | Lede | `--text-lg` | 20px | Figtree 400, muted |
 | Body | `--text-base` | 17px / 1.65 | Figtree 400 |
 | Small | `--text-sm` | 15px | Figtree |
-| Eyebrow | `--text-xs` | 13px caps, 0.14em tracking | Figtree 600, terracotta text |
+| Label | 0.75rem | Caps, 0.12em tracking | Figtree 600, `--color-ink-muted`; page headers and the hero only |
 
 Every page has exactly one H1 (enforced by tests), and headings don't skip levels.
 
@@ -43,33 +43,35 @@ Every page has exactly one H1 (enforced by tests), and headings don't skip level
 
 | Component | Class | Notes |
 |---|---|---|
-| Primary button | `.btn.btn-primary` | Deep green pill. One per view. "Start Your Project" uses this. |
+| Primary button | `.btn.btn-primary` | Deep green rectangle, 4px radius (limestone on the dark hero). One per view. "Start Your Project" uses this. |
 | Secondary button | `.btn.btn-secondary` | Green outline. |
 | Light button | `.btn.btn-light` | On the dark CTA band only. |
 | Text link | `.text-link` | Underlined arrow link for "see more". |
-| Card | `.card` (`a.card` when the whole card links) | White, 1px stone border, 20px radius. Hover adds a soft shadow and a 3% image zoom. |
+| Card | `.card` | No box: a 3:2 photo (4px radius) with text below. Used only for things compared side by side (gallery, plants). No hover shadow or zoom. |
 | Gallery card | `figure.card.gallery-card` | Photo with a `.tag` label ("Landscape design inspiration" or "Completed project"), category eyebrow, title, caption, "Photographed at" line and `.credit` line. |
 | Inspiration mosaic | `.mosaic` | Home preview of up to 4 featured photos: one large lead tile plus three; labels sit on an ivory chip so text never depends on the photo for contrast. Credits line below. |
 | Inspiration CTA | `.inspo-cta` | Light sage panel after the gallery linking to the inquiry form. |
-| Review card | `figure.review` | White card, serif italic quote, terracotta quote mark, faint leaf accent in the corner, name + optional location, date and source. Optional `.stars` (Google-linked reviews only). Static grid, no carousel. |
+| Review | `figure.review` | Top rule, serif quote, name + optional location, date and source. Optional `.stars` (Google-linked reviews only). Static grid, no carousel. |
 | Review prompt | `.review-ask` | "Enjoyed working with us?" with a Google review button; shown only when a Google link is configured. |
-| Sample review | `.review--sample` + `.sample-flag` | Dashed terracotta border and a red "not a real review" label. Development preview only. |
+| Sample review | `.review--sample` + `.sample-flag` | Dashed red border and a red "not a real review" label. Development preview only. |
 | Plant card | `.card.plant-card` | Native badge, facts list, `<details>` for care tips. |
 | Steps | `ol.steps` | Real sequences only; numbers come from CSS counters. |
 | FAQ | `.faq` + `<details>` | Keyboard accessible without JavaScript. |
-| Notice | `.notice` | Neutral info, e.g. "these are illustrations". |
+| Notice | `.notice` | Neutral info between two hairlines, e.g. "these are inspiration photos". |
 | CTA band | `ctaBand()` in `layout.mjs` | The page's one dark moment, before the footer. |
-| Arch frame | `.arch` | Rounded-top frame for hero imagery, echoing Mediterranean Revival arches common in South Florida. |
+| Hero photo | `.hero-photo` | A real photo in a plain 4:5 frame with a credit caption; sized to the screen height on desktop. |
+| Services index | `.service-index` | Home: two-column list of services (title + one line), hairline rules, no images. |
+| Text link | `.text-link` | Secondary action: underlined text with an arrow; terracotta underline on hover. |
 
 ## Navigation
 
 - Sticky header with a hairline border that appears after scrolling.
-- Desktop: inline links plus the "Start Your Project" button. The current page has `aria-current="page"` and a terracotta underline.
+- Desktop: inline links plus the "Start Your Project" button. The current page has `aria-current="page"` and a deep-green underline.
 - Below 896px: a "Menu" button (`aria-expanded`, `aria-controls`) opens a full-width panel. Escape closes it and returns focus to the button. Without JavaScript, the links simply wrap and stay visible.
 
 ## Forms
 
-- Labels sit above fields. Required fields show a terracotta asterisk, explained once at the top.
+- Labels sit above fields. Required fields show an asterisk, explained once at the top.
 - Inputs are at least 48px tall; radio "chips" and checkboxes are at least 44px.
 - Errors appear inline under the field (`.field.has-error`), are linked by `aria-describedby`, set `aria-invalid`, and are also listed in a focusable summary at the top.
 - The submit button shows a spinner and "Sending…", and is disabled while sending.
@@ -85,7 +87,7 @@ Every page has exactly one H1 (enforced by tests), and headings don't skip level
 
 - Focus: 3px blue-green outline (`--color-focus`) with offset, on every interactive element.
 - Hover: color shifts within 220ms (`--duration`) on the `--ease` curve.
-- Motion: cards below the fold fade up once when scrolled into view. Nothing visible on load is ever hidden, and everything is disabled under `prefers-reduced-motion`.
+- Motion: color and underline changes only (150ms). No scroll animations, zooms, shadows or moving arrows; the form spinner is the only animation. Everything is disabled under `prefers-reduced-motion`.
 
 ## Accessibility conventions
 

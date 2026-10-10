@@ -4,6 +4,8 @@
 **Pages audited:** Home, Services & Projects, South Florida Plants, Contact, Privacy, Thank-you, 404
 **Goal:** move the site from "playful and vibe-coded" to "quiet, professional South Florida landscape studio", without changing content, the inquiry workflow or the brand voice ([brand-voice.md](brand-voice.md)).
 
+> **Status (October 2026): applied.** Decisions: licensed Bonnet House photo in the hero; licensed real plant photos for the guide; terracotta kept only for link hover. The sections below remain the reference for why the site looks the way it does.
+
 This document is written for Claude Code. Each recommendation names the file and selector to change. Apply it in the order given in [§6 Implementation order](#6-implementation-order).
 
 > **On whitespace.** The brief asks for "more whitespace", but the last round asked for less negative space. Both are right once you separate two things. Keep the **space between sections** tight (it was already reduced 30%). Add **space inside components**: fewer elements per screen, wider margins around text, no decorative clutter. The page feels calmer because there's less in it, not because the gaps are bigger.
@@ -442,8 +444,8 @@ Once §4.5, §4.6 and §4.9 land, `src/build/illustrations.mjs` is still used by
 6. Retire the illustration generator (§4.13).
 7. Run `npm run check`, and look at the site at 375, 768, 1366 and 1920px.
 
-## 7. Open decisions for Robert
+## 7. Decisions (resolved)
 
-- **Hero photo:** use a licensed inspiration photo now (labeled), or keep a typographic hero until his own project photo exists?
-- **Plant guide images:** download licensed real plant photos (CC0/CC BY from Wikimedia Commons, about 9 files), or go text-only for now?
-- **Terracotta:** keep it for link hover only, or retire it?
+- **Hero photo:** licensed Bonnet House photo, labeled "Inspiration" with its credit, until Robert has his own project photo.
+- **Plant guide images:** 9 licensed real plant photos from Wikimedia Commons (see image-credits.md).
+- **Terracotta:** link hover underline only.

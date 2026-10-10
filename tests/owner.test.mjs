@@ -45,11 +45,12 @@ test("CTA invites the visitor to the inquiry form in Robert's voice", async () =
   assert.match(s, /<a class="btn btn-primary" href="\/contact\/#inquiry">Tell Me About Your Project/);
 });
 
-test("without a photo, an illustrated placeholder (not a stock person) is shown with the caption", async () => {
+test("without a photo, a fine-line placeholder (not a stock person) is shown with the caption", async () => {
   assert.equal(owner.photo, null, "update this test once Robert's photo is added");
   const s = section(await homeHtml());
   assert.match(s, /portrait--placeholder/);
-  assert.match(s, /<img src="\/img\/art\/portrait-placeholder\.svg" alt=""/);
+  assert.match(s, /<svg class="line-leaf"[^>]*aria-hidden="true"/);
+  assert.ok(!/<img[^>]*portrait/.test(s), "no stand-in image of a person");
   assert.match(s, /Robert — Owner &amp; Landscaping Enthusiast/);
 });
 
