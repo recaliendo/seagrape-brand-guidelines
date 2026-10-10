@@ -1,0 +1,5 @@
+{
+  "_help": "Real customer reviews only. A review appears on the site only when 'verified' and 'permission' are both true. Stars appear only for reviews whose 'source' is 'Google' and that include a 'sourceUrl'. Names are shown as first name + last initial. With no publishable reviews, the section is hidden automatically. 'googleReviewUrl' is your Google Business Profile review link (leave empty until you have one). See docs/setup-and-deployment.md#adding-customer-reviews.",
+  "googleReviewUrl": "",
+  "items": []
+}

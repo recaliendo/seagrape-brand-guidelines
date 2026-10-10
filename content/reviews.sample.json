@@ -1,0 +1,38 @@
+{
+  "_help": "DEVELOPMENT ONLY. Fictional placeholder reviews for previewing the layout with `npm run dev:samples`. The production build never reads this file, and every sample card is visibly labeled as a sample.",
+  "googleReviewUrl": "",
+  "items": [
+    {
+      "name": "Sample Customer",
+      "location": "Sample City",
+      "date": "2026-10",
+      "text": "Sample text to preview the layout. A real customer's words will appear here once they've given permission to share them.",
+      "rating": 5,
+      "source": "Google",
+      "sourceUrl": "https://example.com/sample-review",
+      "verified": true,
+      "permission": true,
+      "sample": true
+    },
+    {
+      "name": "Placeholder P.",
+      "location": "",
+      "date": "",
+      "text": "A shorter sample review, with no location or date, to check how cards line up when some details are missing.",
+      "source": "Email",
+      "verified": true,
+      "permission": true,
+      "sample": true
+    },
+    {
+      "name": "Example E.",
+      "location": "Sample City",
+      "date": "2026-09-14",
+      "text": "A longer sample review to test wrapping. It runs across several lines to show how the card handles more text, how the quote mark sits, and whether the name and details stay aligned at the bottom of each card when the cards in a row have different amounts of text.",
+      "source": "In person",
+      "verified": true,
+      "permission": true,
+      "sample": true
+    }
+  ]
+}

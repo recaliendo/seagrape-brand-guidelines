@@ -1,0 +1,178 @@
+{
+  "_help": "Plant profiles for the South Florida Plants page. Every fact should come from a UF/IFAS or similarly authoritative source listed in 'sources'. Set 'featured' to true to show a plant on the Home page (3 recommended). Add a 'photo' object when you have a licensed or original photo.",
+  "lastReviewed": "2026-10",
+  "items": [
+    {
+      "id": "firebush",
+      "name": "Firebush",
+      "scientific": "Hamelia patens",
+      "native": "Florida native",
+      "category": "Flowering shrub",
+      "light": "Full sun to part shade",
+      "water": "Regular water to establish; fairly drought tolerant once established",
+      "size": "About 8–12 ft tall if left unpruned; compact types stay smaller",
+      "uses": "Butterfly and hummingbird gardens, informal hedges, color at the back of a bed",
+      "care": "Fertilize sparingly. Keep lawn grass out of the root zone. Watch new spring growth for aphids.",
+      "tip": "Nurseries also sell a Central American variety with yellow-orange flowers and smooth leaves. For the true native, look for red-orange flowers and slightly fuzzy leaves.",
+      "featured": true,
+      "illustration": "plant-firebush",
+      "sources": [
+        { "label": "UF/IFAS EDIS: Hamelia patens", "url": "https://edis.ifas.ufl.edu/fp237" },
+        { "label": "UF/IFAS Extension Charlotte County: A firebush of a different color", "url": "https://blogs.ifas.ufl.edu/charlotteco/2023/10/03/a-firebush-of-a-different-color/" }
+      ]
+    },
+    {
+      "id": "coontie",
+      "name": "Coontie",
+      "scientific": "Zamia integrifolia",
+      "native": "Florida native",
+      "category": "Low-maintenance accent",
+      "light": "Full sun to full shade",
+      "water": "Needs water while getting established; drought tolerant afterward",
+      "size": "Low, fern-like mound; mature clumps can spread several feet",
+      "uses": "Foundation plantings, groundcover masses, shady corners, modern and minimal gardens",
+      "care": "Slow growing and rarely needs pruning. Hard to move once large, so plant it where it can stay.",
+      "tip": "Coontie is the only larval host plant for the rare atala butterfly. Its seeds and roots are poisonous, so place it thoughtfully around children and pets.",
+      "featured": true,
+      "illustration": "plant-coontie",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Plant This, Not That", "url": "https://gardeningsolutions.ifas.ufl.edu/care/weeds-and-invasive-plants/plant-this-not-that/" },
+        { "label": "UF/IFAS Extension Broward County: The atala butterfly", "url": "https://blogs.ifas.ufl.edu/browardco/2021/01/10/provide-for-wildlife-the-atala-butterfly/" },
+        { "label": "Florida-Friendly Landscaping: Coontie", "url": "https://ffl.ifas.ufl.edu/butterflies/browse/Details/414" }
+      ]
+    },
+    {
+      "id": "cocoplum",
+      "name": "Cocoplum",
+      "scientific": "Chrysobalanus icaco",
+      "native": "Florida native",
+      "category": "Privacy & screening",
+      "light": "Full sun to light shade",
+      "water": "Little irrigation once established; avoid soggy soil while young",
+      "size": "Coastal forms stay low (about 18–24 in with pruning); inland forms can reach 15–25 ft",
+      "uses": "Hedges, privacy screens, coastal landscapes",
+      "care": "Plant about 3–4 ft apart for a hedge. Not freeze tolerant. Fruit can drop on walkways for a short time.",
+      "tip": "Pick the form to match the job. 'Horizontal' is the low coastal type; the inland type makes a tall screen.",
+      "featured": false,
+      "illustration": "plant-cocoplum",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Cocoplum", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/cocoplum/" },
+        { "label": "UF/IFAS EDIS: Cocoplum identification and uses", "url": "https://edis.ifas.ufl.edu/ep553" }
+      ]
+    },
+    {
+      "id": "seagrape",
+      "name": "Seagrape",
+      "scientific": "Coccoloba uvifera",
+      "native": "Florida native",
+      "category": "Coastal tree or hedge",
+      "light": "Full sun to part shade",
+      "water": "Water regularly until established; very drought tolerant afterward",
+      "size": "Grown as a large shrub, hedge or multi-trunk tree",
+      "uses": "Seaside yards, windbreaks, screens, bold-leaf accents",
+      "care": "Prune by hand because of the large leaves. Young trees need early training. Fallen leaves are slow to break down.",
+      "tip": "Highly salt tolerant, which makes it one of the best choices near the coast. Seagrapes growing in dunes are protected; altering them there requires a state permit.",
+      "featured": true,
+      "illustration": "plant-seagrape",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Seagrape", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/trees/seagrape/" },
+        { "label": "UF/IFAS EDIS: Coccoloba uvifera", "url": "https://edis.ifas.ufl.edu/st175" }
+      ]
+    },
+    {
+      "id": "muhly-grass",
+      "name": "Muhly grass",
+      "scientific": "Muhlenbergia capillaris",
+      "native": "Florida native",
+      "category": "Ornamental grass",
+      "light": "Full sun",
+      "water": "Water until established; drought tolerant afterward",
+      "size": "Clumps about 2–3 ft tall and wide",
+      "uses": "Mass plantings, borders, rain gardens, natural and modern designs",
+      "care": "Space 2–3 ft apart. Tidy or cut back in late winter before new growth starts. Rarely troubled by pests.",
+      "tip": "Clouds of pink flower plumes appear in fall. Plant in groups so the color reads from a distance and moves with the wind.",
+      "featured": false,
+      "illustration": "plant-muhly",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Muhly grass", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/muhly-grass/" },
+        { "label": "UF/IFAS: Muhlenbergia capillaris fact sheet", "url": "https://ask.ifas.ufl.edu/publication/FP415" }
+      ]
+    },
+    {
+      "id": "wild-coffee",
+      "name": "Wild coffee",
+      "scientific": "Psychotria nervosa",
+      "native": "Florida native",
+      "category": "Shade shrub",
+      "light": "Shade to part shade",
+      "water": "Moderate; may wilt in the dry season without extra water",
+      "size": "About 4–10 ft tall and 4–8 ft wide; dwarf forms stay near 2.5 ft",
+      "uses": "Shady beds, informal hedges, under trees, wildlife gardens",
+      "care": "Needs well-drained soil and seldom needs pruning. For hedges, space about 4 ft apart and keep 4 ft from the house.",
+      "tip": "Glossy, deeply veined leaves brighten shady spots. Birds eat the red fruit, but it isn't for people.",
+      "featured": false,
+      "illustration": "plant-wildcoffee",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Wild coffee", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/wild-coffee/" },
+        { "label": "UF/IFAS EDIS: Psychotria nervosa", "url": "https://edis.ifas.ufl.edu/fp494" }
+      ]
+    },
+    {
+      "id": "simpsons-stopper",
+      "name": "Simpson's stopper",
+      "scientific": "Myrcianthes fragrans",
+      "native": "Florida native (state-listed as threatened)",
+      "category": "Privacy & screening",
+      "light": "Full sun to shade",
+      "water": "Drought tolerant once established; monitor young plants in dry spells",
+      "size": "Shrub or small tree, often 15–20 ft; 'Compacta' stays near 5 ft",
+      "uses": "Hedges, small specimen trees, coastal and wildlife gardens",
+      "care": "Handles shearing well, though heavy pruning reduces flowers and berries. Tolerates salt and alkaline soil.",
+      "tip": "Fragrant white spring flowers, orange-red berries for birds, and peeling cinnamon-colored bark. Buy nursery-grown plants only.",
+      "featured": false,
+      "illustration": "plant-stopper",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Simpson's stopper", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/shrubs/simpsons-stopper/" },
+        { "label": "UF/IFAS EDIS: Myrcianthes fragrans", "url": "https://edis.ifas.ufl.edu/fp418" }
+      ]
+    },
+    {
+      "id": "sabal-palm",
+      "name": "Sabal palm (cabbage palm)",
+      "scientific": "Sabal palmetto",
+      "native": "Florida native (state tree)",
+      "category": "Palm",
+      "light": "Full sun",
+      "water": "Keep the root ball moist, not soggy, while establishing; tough afterward",
+      "size": "Tall single-trunk palm",
+      "uses": "Focal points, natural Florida and coastal landscapes",
+      "care": "Plant at the same depth it grew before. Remove only fully dead fronds and avoid 'hurricane cuts', which weaken palms.",
+      "tip": "Tolerates salt spray on its fronds better than salty soil. Seedlings can pop up beneath it, so plan for occasional weeding.",
+      "featured": false,
+      "illustration": "plant-sabal",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Sabal palmetto", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/trees-and-shrubs/palms-and-cycads/sabal-palmetto/" },
+        { "label": "UF/IFAS EDIS: Regenerated sabal palms", "url": "https://edis.ifas.ufl.edu/ep543" }
+      ]
+    },
+    {
+      "id": "croton",
+      "name": "Croton",
+      "scientific": "Codiaeum variegatum",
+      "native": "Not native (tropical ornamental)",
+      "category": "Tropical foliage",
+      "light": "Bright light or shifting sun; harsh sun can scorch or fade leaves",
+      "water": "Well-drained soil; let it dry slightly between waterings",
+      "size": "Can reach about 6 ft tall and wide in the ground",
+      "uses": "Color accents, tropical beds, containers, entryways",
+      "care": "Space 2–3 ft apart. Frost damages leaves, but plants usually recover. Occasionally gets scale or mites.",
+      "tip": "Leaves and sap are irritating and poisonous if chewed, and the sap can stain. Wear gloves and keep away from pets that nibble plants.",
+      "featured": false,
+      "illustration": "plant-croton",
+      "sources": [
+        { "label": "UF/IFAS Gardening Solutions: Crotons", "url": "https://gardeningsolutions.ifas.ufl.edu/plants/ornamentals/crotons/" },
+        { "label": "UF/IFAS Extension Polk County: Growing crotons", "url": "https://blogs.ifas.ufl.edu/polkco/2025/05/10/colorful-and-carefree-growing-crotons-in-your-central-florida-yard/" }
+      ]
+    }
+  ]
+}
