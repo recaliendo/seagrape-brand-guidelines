@@ -10,6 +10,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { layout } from "../src/templates/layout.mjs";
 import * as pages from "../src/templates/pages.mjs";
 import { renderIllustrations, ILLUSTRATION_SIZES } from "../src/build/illustrations.mjs";
+import { prepareReviews } from "../src/build/reviews.mjs";
+import { KIND_LABELS } from "../src/templates/pages.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const hash = (s) => createHash("sha256").update(s).digest("hex").slice(0, 10);
@@ -55,12 +57,34 @@ function securityHeaders() {
 `;
 }
 
-export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, quiet = false } = {}) {
+/** Stops the build if a gallery item could misrepresent a photo or is missing its file, alt text or credit. */
+export function checkGallery(gallery) {
+  const problems = [];
+  for (const g of gallery.items) {
+    const where = `content/gallery.json "${g.id}"`;
+    if (!KIND_LABELS[g.kind]) problems.push(`${where}: kind must be "inspiration" or "project".`);
+    if (!g.photo?.src) problems.push(`${where}: needs a photo.`);
+    for (const src of [g.photo?.src, g.photo?.srcSmall].filter(Boolean)) {
+      if (!existsSync(join(ROOT, "src/assets", src))) problems.push(`${where}: file not found: src/assets${src}`);
+    }
+    if (!g.photo?.alt) problems.push(`${where}: photo needs alt text.`);
+    if (g.kind === "inspiration") {
+      for (const k of ["author", "source", "sourceUrl", "license", "licenseUrl"]) if (!g.credit?.[k]) problems.push(`${where}: credit.${k} is required for inspiration photos.`);
+    }
+  }
+  if (problems.length) throw new Error("Gallery content problems:\n  " + problems.join("\n  "));
+}
+
+export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, reviewsData, galleryData, sampleReviews = false, quiet = false } = {}) {
   const log = quiet ? () => {} : console.log;
+  if (sampleReviews && process.env.CONTEXT === "production") throw new Error("Sample reviews can't be used in a production build.");
   const site = { ...(await readJson("content/site.json")), ...siteOverrides };
   const services = await readJson("content/services.json");
-  const gallery = await readJson("content/gallery.json");
+  const gallery = galleryData || (await readJson("content/gallery.json"));
   const plants = await readJson("content/plants.json");
+  const reviewsSource = reviewsData || (await readJson(sampleReviews ? "content/reviews.sample.json" : "content/reviews.json"));
+  const reviews = prepareReviews(reviewsSource, { allowSamples: sampleReviews });
+  checkGallery(gallery);
   site.url = (site.url || process.env.URL || "").replace(/\/$/, "");
 
   await rm(outDir, { recursive: true, force: true });
@@ -93,7 +117,7 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, q
   await cp(join(ROOT, "logo/seagrape-favicon.svg"), join(outDir, "favicon.svg"));
 
   // Pages.
-  const ctx = { site, services, gallery, plants, art: ILLUSTRATION_SIZES };
+  const ctx = { site, services, gallery, plants, reviews, art: ILLUSTRATION_SIZES };
   const list = [
     pages.home(ctx),
     pages.servicesProjects(ctx),
@@ -127,13 +151,16 @@ export async function build({ outDir = join(ROOT, "dist"), siteOverrides = {}, q
   if (site.nameIsPlaceholder) warnings.push('Business name is still the placeholder. Update "name" in content/site.json and set "nameIsPlaceholder" to false.');
   if (!site.email && !site.phone) warnings.push("No public email or phone in content/site.json. Visitors can only reach you through the form.");
   if (!site.url) warnings.push("No site URL set, so canonical links and sitemap.xml were skipped. Netlify sets this automatically during deploys.");
+  warnings.push(...reviews.warnings);
+  if (sampleReviews) warnings.push("SAMPLE REVIEWS ARE SHOWING. Development preview only; never deploy this build.");
+  else if (!reviews.items.length) warnings.push("No verified reviews yet, so the testimonials section is hidden.");
   for (const w of warnings) log(`  ! ${w}`);
   log(`Built ${list.length} pages and ${Object.keys(art).length} illustrations → ${outDir}`);
   return { outDir, pages: list.map((p) => p.path), warnings };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  build().catch((err) => {
+  build({ sampleReviews: process.argv.includes("--sample-reviews") }).catch((err) => {
     console.error(err);
     process.exit(1);
   });

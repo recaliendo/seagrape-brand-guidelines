@@ -221,65 +221,10 @@ const scenes = {
       ${fan(760, 480, 70, p.sage5, 11)}
     `);
   },
-  classic(p) {
-    const r = rng(61);
-    return svg(800, 600, "Illustrated classic garden with rounded hedges, a curved path and a small flowering tree", `
-      <rect width="800" height="600" fill="${p.paper}"/>
-      <rect x="0" y="0" width="800" height="300" fill="${p.sage1}"/>
-      <rect x="250" y="120" width="300" height="200" fill="${p.stucco}"/><path d="M360 320 V230 a40 40 0 0 1 80 0 V320Z" fill="${p.wood}"/>
-      <rect x="0" y="300" width="800" height="300" fill="${p.sage3}"/>
-      <path d="M360 320 L440 320 C470 420 560 500 620 600 L300 600 C330 500 380 420 360 320Z" fill="${p.sand}"/>
-      <circle cx="140" cy="180" r="110" fill="${p.leaf7}"/><rect x="132" y="260" width="16" height="90" fill="${p.wood}"/>
-      ${shrubDots(140, 170, 90, 22, p.terra, r)}
-      ${mound(140, 400, 260, 90, p.leaf8)}${mound(680, 400, 240, 100, p.leaf8)}
-      ${mound(250, 440, 120, 50, p.leaf7)}${mound(560, 440, 120, 50, p.leaf7)}
-      ${mound(90, 560, 200, 80, p.leaf7)}${mound(740, 560, 200, 90, p.leaf7)}
-      ${shrubDots(90, 520, 80, 14, p.terra, r)}${shrubDots(740, 515, 80, 14, p.gold, r)}
-      <circle cx="660" cy="200" r="70" fill="${p.leaf8}"/><rect x="654" y="250" width="12" height="70" fill="${p.wood}"/>
-    `);
-  },
-  "natural-florida"(p) {
-    const r = rng(71);
-    return svg(800, 600, "Illustrated natural Florida landscape with sabal palms, saw palmetto fans and pink muhly grass", `
-      <rect width="800" height="600" fill="${p.paper}"/>
-      <circle cx="600" cy="140" r="70" fill="${p.blush}" opacity=".6"/>
-      <path d="M0 360 C200 330 600 350 800 330 V600 H0Z" fill="${p.sage1}"/>
-      ${palm(170, 470, 360, p.wood, p.leaf7, 14)}${palm(280, 480, 280, p.wood, p.leaf8, -8)}${palm(650, 470, 330, p.wood, p.leaf7, -12)}
-      <path d="M0 470 C200 450 600 460 800 440 V600 H0Z" fill="${p.sand}"/>
-      ${fan(100, 500, 130, p.sage5, 15)}${fan(430, 500, 110, p.leaf7, 15)}${fan(760, 510, 120, p.sage5, 15)}
-      ${blades(270, 520, 11, 120, p.sage5, r)}${plumes(270, 510, 120, 170, p.blush, r)}
-      ${blades(560, 530, 11, 120, p.sage5, r)}${plumes(560, 520, 120, 170, p.blush, r)}
-      ${shrubDots(400, 580, 300, 30, p.leaf8, r)}
-    `);
-  },
-  minimal(p) {
-    return svg(800, 600, "Illustrated minimalist garden with pale gravel, stepping stones and a single sculptural plant", `
-      <rect width="800" height="600" fill="${p.stucco}"/>
-      <rect x="0" y="380" width="800" height="220" fill="${p.stone}"/>
-      <rect x="0" y="375" width="800" height="8" fill="${p.sand}"/>
-      ${Array.from({ length: 7 }, (_, i) => `<path d="M0 ${430 + i * 26} Q400 ${420 + i * 26} 800 ${430 + i * 26}" stroke="${p.paper}" stroke-width="2" fill="none" opacity=".7"/>`).join("")}
-      ${[[150, 520], [290, 500], [430, 480]].map(([x, y]) => `<rect x="${x}" y="${y}" width="100" height="34" rx="4" fill="${p.sand}"/>`).join("")}
-      <rect x="520" y="300" width="200" height="84" fill="${p.leaf9}"/>
-      ${fan(620, 300, 170, p.leaf7, 17, 160, -170)}
-      ${fan(140, 390, 70, p.sage5, 13)}
-      <circle cx="210" cy="150" r="56" fill="${p.blush}" opacity=".45"/>
-    `);
-  },
-  colorful(p) {
-    const r = rng(83);
-    return svg(800, 600, "Illustrated colorful tropical garden with layered crotons, bromeliads and flowering shrubs", `
-      <rect width="800" height="600" fill="${p.sage1}"/>
-      ${palm(640, 380, 300, p.wood, p.leaf7, -10)}
-      ${mound(400, 380, 900, 160, p.leaf8)}
-      ${shrubDots(200, 290, 140, 30, p.terra, r)}${shrubDots(560, 300, 140, 20, p.gold, r)}
-      <rect x="0" y="380" width="800" height="220" fill="${p.sand}"/>
-      ${croton(120, 470, 170, [p.terra, p.gold, p.leaf7, p.plum], r)}
-      ${croton(330, 480, 150, [p.gold, p.leaf8, p.terra], r)}
-      ${croton(560, 470, 180, [p.plum, p.terra, p.gold, p.leaf7], r)}
-      ${croton(760, 480, 150, [p.leaf7, p.gold, p.terra], r)}
-      ${[220, 450, 670].map((x) => Array.from({ length: 9 }, (_, i) => strap(x, 580, 90, -80 + i * 20, 16, i % 2 ? p.sage5 : p.leaf7, 0.05)).join("") + `<circle cx="${x}" cy="560" r="10" fill="${p.terra}"/>`).join("")}
-    `);
-  },
+
+
+
+
   "small-space"(p) {
     const r = rng(97);
     return svg(800, 600, "Illustrated small entryway garden with an arched door, potted plants and a compact planting bed", `

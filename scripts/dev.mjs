@@ -1,6 +1,7 @@
 // Local preview server: builds the site, serves dist/, and runs the real inquiry handler at /api/inquiry.
 //   npm run dev        uses provider settings from .env (no settings = the form reports "not connected")
 //   npm run dev:mock   fakes a successful email provider so you can preview the success flow; nothing is sent
+//   npm run dev:samples  also shows clearly labeled sample reviews to preview the testimonials layout
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { existsSync, readFileSync } from "node:fs";
@@ -39,7 +40,8 @@ if (MOCK) {
 const handler = createInquiryHandler({ env, fetchImpl });
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".mjs": "text/javascript", ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".txt": "text/plain", ".xml": "application/xml" };
 
-await build();
+const SAMPLES = process.argv.includes("--sample-reviews");
+await build({ sampleReviews: SAMPLES });
 
 createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);

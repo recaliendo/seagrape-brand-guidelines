@@ -2,20 +2,32 @@
 
 ## Customer journey
 
-**Discover → Explore → Build trust → Submit inquiry**
+**Discover → Explore landscaping ideas → Build trust → Submit inquiry**
 
 | Stage | Where it happens | What the visitor needs |
 |---|---|---|
 | Discover | Home hero, Google results | "This is a local landscape designer who'll listen to me." |
-| Explore | Services & Projects, style gallery | "They can do the kind of thing I want, big or small." |
-| Build trust | Owner-operated intro, plant guide, honest labels | "They know South Florida plants and don't oversell." |
+| Explore ideas | Home inspiration mosaic → Services & Projects gallery | "I can picture what my yard could look like." |
+| Build trust | Owner-operated intro, plant guide, honest photo labels, customer reviews (once real ones exist) | "They know South Florida plants, real people liked working with them, and they don't oversell." |
 | Submit | Contact page form | "This is quick, and I know what happens next." |
+
+### Home page order
+
+Hero → Small by design → Services → **Inspiration mosaic** → How we work → Plants → **Customer reviews** (hidden until real ones exist) → final CTA.
+
+Reviews sit just before the final CTA so trust peaks right before the ask. With no reviews, the page flows straight from Plants to the CTA with no gap or empty heading.
+
+### Gallery decisions
+
+- 8 photos across 6 styles. Category filtering was left out: with one or two photos per category, filters would mostly show near-empty results. Revisit at around 15+ items.
+- Each style shows its category, a caption about the design idea, where it was photographed, and its credit.
+- The "Inspired by something you see?" panel sits directly under the gallery, where interest is highest, and links to `/contact/#inquiry`.
 
 ## Information architecture
 
 ```
 /                       Home (conversion landing page)
-/services-projects/     Services, project-size message, style gallery, planning FAQ
+/services-projects/     Services, project-size message, inspiration gallery (#inspiration), planning FAQ
 /south-florida-plants/  Growing conditions, plant profiles, invasive-plant note, sources
 /contact/               Inquiry form + contact details + what happens next
 /privacy/               Privacy notice (footer link)
@@ -70,8 +82,8 @@ Validation runs only after the first submit attempt, then live as people correct
 
 ## Trust considerations
 
-- Illustrations are labeled "Style reference". Real photos can be labeled "Completed project" only when they are.
+- Third-party photos are labeled "Landscape design inspiration" with a notice and per-photo credits. Photos can be labeled "Completed project" only when they are.
 - Plant facts cite UF/IFAS sources on the page.
-- No fake reviews, badges, counts or social links.
+- No fake reviews, badges, counts or social links. Reviews appear only when real, verified and shared with permission; stars only for linked Google reviews.
 - The privacy notice is linked from the form and the footer.
 - Contact details are shown only when the owner has provided real ones.

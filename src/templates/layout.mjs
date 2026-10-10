@@ -34,7 +34,8 @@ export const logoMark = (cls = "") =>
 export function media(item, { alt, eager = false, sizes = "(min-width: 56em) 50vw, 100vw", art } = {}) {
   if (item.photo && item.photo.src) {
     const p = item.photo;
-    return `<img src="${esc(p.src)}" alt="${esc(alt ?? p.alt ?? "")}" width="${p.width || 1200}" height="${p.height || 900}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" sizes="${sizes}">`;
+    const srcset = p.srcSmall ? ` srcset="${esc(p.srcSmall)} 480w, ${esc(p.src)} ${p.width || 800}w" sizes="${sizes}"` : "";
+    return `<img src="${esc(p.src)}"${srcset} alt="${esc(alt ?? p.alt ?? "")}" width="${p.width || 1200}" height="${p.height || 900}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
   }
   const key = item.illustration;
   const [w, h] = art?.[key] || [800, 600];

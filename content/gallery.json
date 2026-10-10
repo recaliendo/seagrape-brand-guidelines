@@ -1,53 +1,189 @@
 {
-  "_help": "Landscape style references for the inspiration gallery. These are illustrations, not completed projects. When you add real project photos, set 'kind' to 'project', add a 'photo' object, and only describe work you actually did. Never label third-party or AI-generated images as your projects.",
+  "_help": "Gallery for the Services & Projects page and the Home page preview. kind: 'inspiration' = third-party photo shown for ideas (needs a full 'credit'); 'project' = the owner's own completed work (only when it really is). 'featured': true shows it on the Home page (4 recommended). Photo files live in src/assets/img/. Record every third-party photo in docs/image-credits.md. See docs/setup-and-deployment.md.",
   "items": [
     {
       "id": "modern-tropical",
-      "kind": "style",
-      "title": "Modern tropical",
-      "description": "Architectural foliage against clean walls, with strong shapes and plenty of breathing room.",
-      "plants": ["Bird of paradise", "Sabal palm", "Coontie"],
-      "illustration": "modern-tropical"
+      "kind": "inspiration",
+      "category": "Modern tropical",
+      "title": "Reflecting pool and palms",
+      "caption": "A still pool dotted with giant lily pads, framed by tall palms and open sky. Water, space and a few bold plants give the scene its calm, modern feel.",
+      "place": "Burle Marx Plaza, Naples Botanical Garden, Naples, FL",
+      "featured": true,
+      "photo": {
+        "src": "/img/inspiration/modern-tropical-burle-marx-plaza-800.webp",
+        "srcSmall": "/img/inspiration/modern-tropical-burle-marx-plaza-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Pool with giant round lily pads, framed by tall palms and layered tropical planting under a blue sky"
+      },
+      "credit": {
+        "author": "scott.zona",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Naples_Botanic_Garden_03.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
     },
     {
-      "id": "classic-garden",
-      "kind": "style",
-      "title": "Classic & timeless",
-      "description": "Balanced beds, soft rounded hedges and a welcoming path to the door.",
-      "plants": ["Cocoplum", "Simpson's stopper", "Firebush"],
-      "illustration": "classic"
+      "id": "classic-elegant",
+      "kind": "inspiration",
+      "category": "Classic & elegant",
+      "title": "Formal parterre garden",
+      "caption": "Clipped hedges in a repeating pattern, gravel walks and statuary. Symmetry gives a garden calm, timeless order, and the idea scales down to a pair of matching beds by the front door.",
+      "place": "Vizcaya Museum & Gardens, Miami, FL",
+      "featured": false,
+      "photo": {
+        "src": "/img/inspiration/classic-vizcaya-parterre-800.webp",
+        "srcSmall": "/img/inspiration/classic-vizcaya-parterre-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Formal garden with low clipped hedges in geometric beds, gravel paths and classical statues beneath large shade trees"
+      },
+      "credit": {
+        "author": "Leslie Platt",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vizcaya_Museum_and_Gardens_060524_DSC6682.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
     },
     {
-      "id": "natural-florida",
-      "kind": "style",
-      "title": "Natural Florida",
-      "description": "Native plants arranged with care. Water-wise, wildlife-friendly and at home in the local landscape.",
-      "plants": ["Muhly grass", "Sabal palm", "Wild coffee"],
-      "illustration": "natural-florida"
+      "id": "contemporary-minimal",
+      "kind": "inspiration",
+      "category": "Contemporary minimalist",
+      "title": "Raked gravel and a single stone",
+      "caption": "Pale raked gravel and one weathered boulder against a plain wall. Restraint and texture do the work, with very little to maintain.",
+      "place": "Morikami Museum and Japanese Gardens, Delray Beach, FL",
+      "featured": true,
+      "photo": {
+        "src": "/img/inspiration/minimal-morikami-rock-garden-800.webp",
+        "srcSmall": "/img/inspiration/minimal-morikami-rock-garden-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Minimal rock garden with raked pale gravel and a large weathered stone in front of a plain yellow wall"
+      },
+      "credit": {
+        "author": "Daderot",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Late_Rock_Garden_-_Morikami_Museum_and_Japanese_Gardens_-_Palm_Beach_County,_Florida_-_DSC03390.jpg",
+        "license": "CC0 (public domain)",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
     },
     {
-      "id": "minimal-contemporary",
-      "kind": "style",
-      "title": "Minimal & contemporary",
-      "description": "A few well-chosen plants, clean gravel and simple lines. Calm, uncluttered and easy to live with.",
-      "plants": ["Coontie", "Muhly grass"],
-      "illustration": "minimal"
+      "id": "lush-south-florida",
+      "kind": "inspiration",
+      "category": "Lush South Florida",
+      "title": "Layered tropical beds",
+      "caption": "Bands of red, orange and green foliage beneath shade trees, with a soft lawn path leading you through. Layering low, medium and tall plants makes a bed feel full and finished.",
+      "place": "Naples Botanical Garden, Naples, FL",
+      "featured": true,
+      "photo": {
+        "src": "/img/inspiration/lush-layered-tropical-beds-800.webp",
+        "srcSmall": "/img/inspiration/lush-layered-tropical-beds-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Garden beds of colorful red, orange and green tropical foliage beneath shade trees beside a curving lawn"
+      },
+      "credit": {
+        "author": "Daderot",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Naples_Botanical_Garden_-_Naples,_Florida_-_DSC09632.jpg",
+        "license": "CC0 (public domain)",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
     },
     {
-      "id": "colorful-tropical",
-      "kind": "style",
-      "title": "Colorful tropical garden",
-      "description": "Layered foliage in reds, golds and greens, with flowers that bring in butterflies and hummingbirds.",
-      "plants": ["Crotons", "Firebush", "Bromeliads"],
-      "illustration": "colorful"
+      "id": "florida-friendly",
+      "kind": "inspiration",
+      "category": "Florida-friendly",
+      "title": "Sun-and-sand garden",
+      "caption": "Palms and drought-tolerant plants set in pale sand. It's a good example of a Florida-friendly principle: choose plants that suit a dry, sunny, sandy spot instead of fighting it.",
+      "place": "Bonnet House Museum & Gardens, Fort Lauderdale, FL",
+      "featured": true,
+      "photo": {
+        "src": "/img/inspiration/florida-friendly-bonnet-house-desert-garden-800.webp",
+        "srcSmall": "/img/inspiration/florida-friendly-bonnet-house-desert-garden-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Sandy garden with palms, spiky drought-tolerant plants and low shrubs under a bright blue sky"
+      },
+      "credit": {
+        "author": "Leonard J. DeFrancisci",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bonnet_House_Museum_%26_Gardens_(Fort_Lauderdale,_Florida)_002.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
     },
     {
-      "id": "small-space",
-      "kind": "style",
-      "title": "Small-space transformations",
-      "description": "Entryways, courtyards and side yards where every plant and planter counts.",
-      "plants": ["Wild coffee", "Coontie", "Potted palms"],
-      "illustration": "small-space"
+      "id": "entry-arbor",
+      "kind": "inspiration",
+      "category": "Small yard & entryway",
+      "title": "Arbor over a garden path",
+      "caption": "A simple white arbor turns an ordinary walkway into an entrance. Dense planting on both sides makes the path feel like you're stepping into somewhere special.",
+      "place": "Naples Botanical Garden, Naples, FL",
+      "featured": false,
+      "photo": {
+        "src": "/img/inspiration/entry-garden-arbor-800.webp",
+        "srcSmall": "/img/inspiration/entry-garden-arbor-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "White garden arbor over a paved path, with lush green shrubs and trees on both sides"
+      },
+      "credit": {
+        "author": "Daderot",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Garden_structure_-_Naples_Botanical_Garden_-_Naples,_Florida_-_DSC09818.jpg",
+        "license": "CC0 (public domain)",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    },
+    {
+      "id": "small-courtyard",
+      "kind": "inspiration",
+      "category": "Small yard & entryway",
+      "title": "Compact tropical courtyard",
+      "caption": "A brick path winds between palms and broad-leaf plants. Layering tall, medium and low plants makes a small courtyard feel deeper and more private than it is.",
+      "place": "Ernest Hemingway Home and Museum, Key West, FL",
+      "featured": false,
+      "photo": {
+        "src": "/img/inspiration/small-space-key-west-courtyard-800.webp",
+        "srcSmall": "/img/inspiration/small-space-key-west-courtyard-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Small courtyard garden with a brick path curving between palms and large-leaved tropical plants"
+      },
+      "credit": {
+        "author": "Wknight94 at English Wikipedia",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:HemingwayHouseCourtyard.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "small-yard-path",
+      "kind": "inspiration",
+      "category": "Small yard & entryway",
+      "title": "Flowering path to the gate",
+      "caption": "A curving brick path edged with flowering shrubs and a white fence. Color along the walk is a simple way to make a small front yard feel welcoming.",
+      "place": "",
+      "featured": false,
+      "photo": {
+        "src": "/img/inspiration/small-yard-butterfly-garden-path-800.webp",
+        "srcSmall": "/img/inspiration/small-yard-butterfly-garden-path-480.webp",
+        "width": 800,
+        "height": 600,
+        "alt": "Curving red brick path bordered by flowering shrubs and green lawn, with a white fence and house in the background"
+      },
+      "credit": {
+        "author": "Karen Kleis",
+        "source": "Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Butterfly_Garden_(10851931546).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
     }
   ]
 }

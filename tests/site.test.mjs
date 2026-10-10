@@ -103,10 +103,21 @@ test("no secrets or provider keys reach the browser", async () => {
   for (const html of [...Object.values(pages), js]) assert.ok(!/RESEND_API_KEY|TWILIO_AUTH_TOKEN|api\.resend\.com|api\.twilio\.com/.test(html));
 });
 
-test("style references are labeled and never called completed projects", () => {
-  const html = pages["/services-projects/index.html"];
-  assert.ok((html.match(/Style reference/g) || []).length >= 6);
-  assert.ok(!html.includes("Completed project"));
+test("production build shows no testimonials or sample content while reviews.json is empty", () => {
+  for (const [path, html] of Object.entries(pages)) {
+    assert.ok(!/Not a real review|review--sample|Kind words from our customers/.test(html), `${path} shows review content`);
+  }
+});
+
+test("every srcset candidate resolves to a built file", () => {
+  for (const [path, html] of Object.entries(pages)) {
+    for (const [, set] of html.matchAll(/srcset="([^"]+)"/g)) {
+      for (const part of set.split(",")) {
+        const src = part.trim().split(/\s+/)[0];
+        assert.ok(resolveLocal(src), `${path} → broken srcset ${src}`);
+      }
+    }
+  }
 });
 
 test("brand text colors meet WCAG AA contrast", async () => {

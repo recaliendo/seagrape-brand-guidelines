@@ -9,8 +9,9 @@ Website, brand guidelines and inquiry workflow for a small, owner-operated lands
 ## Quick start
 
 ```bash
-npm run dev:mock   # preview at http://localhost:8888 with a fake email provider
-npm test           # 41 automated tests; nothing is sent
+npm run dev:mock     # preview at http://localhost:8888 with a fake email provider
+npm run dev:samples  # same, plus clearly labeled sample reviews (local preview only)
+npm test             # 60 automated tests; nothing is sent
 ```
 
 No `npm install` needed: zero dependencies, Node 20+.
@@ -25,7 +26,9 @@ No `npm install` needed: zero dependencies, Node 20+.
 | Email notifications (Resend) | ⚙️ Built and tested with mocks; **needs your Resend key and verified domain** |
 | SMS alerts (Twilio) | ⚙️ Optional; built and tested with mocks; needs Twilio credentials and carrier registration |
 | Real business name, email, phone | ⛔ **Launch blocker:** placeholders in `content/site.json` |
-| Project photography | ⏳ Illustrated style references until you have your own photos |
+| Inspiration gallery | ✅ 8 licensed, credited photos labeled "Landscape design inspiration" ([credits](docs/image-credits.md)) |
+| Customer reviews | ✅ Ready; hidden until you add real, permitted reviews to `content/reviews.json` |
+| Your own project photos | ⏳ Add as `"kind": "project"` once you have them |
 | Hosting | ⚙️ Ready for Netlify; not yet deployed |
 
 Until email is configured, the form tells visitors it isn't connected yet. It never pretends to send.
@@ -33,15 +36,16 @@ Until email is configured, the form tells visitors it isn't connected yet. It ne
 ## Project structure
 
 ```
-content/            Editable business info, services, gallery styles, plant profiles (JSON)
+content/            Editable business info, services, gallery, plants, reviews (JSON)
 src/assets/css/     tokens.css (single source of truth for brand styling) + site.css
 src/assets/js/      site.js (menu, motion) + inquiry-form.js (form behavior)
 src/templates/      layout.mjs (head, header, footer) + pages.mjs (page content)
-src/build/          illustrations.mjs (brand-colored SVG art, generated at build)
+src/assets/img/     Photos (inspiration gallery; add your own here)
+src/build/          illustrations.mjs (brand-colored SVG art) · reviews.mjs (review publishing rules)
 lib/inquiry/        schema.mjs (shared validation) · notify.mjs (email/SMS) · handler.mjs (HTTP)
 netlify/functions/  inquiry.mjs (serverless endpoint at /api/inquiry)
 scripts/            build.mjs · dev.mjs
-tests/              Node test runner: validation, notifications, handler, built site
+tests/              Node test runner: validation, notifications, handler, built site, gallery & reviews
 logo/               Logo SVGs
 docs/               Brand, UI, UX, content and setup guides
 ```
@@ -52,7 +56,8 @@ docs/               Brand, UI, UX, content and setup guides
 - [UI guidelines](docs/ui-guidelines.md): tokens, layout, components, accessibility
 - [UX guidelines](docs/ux-guidelines.md): journey, navigation, form design
 - [Content guidelines](docs/content-guidelines.md): writing, plant accuracy, photo honesty, SEO
-- [Setup & deployment](docs/setup-and-deployment.md): configuration, email/SMS, Netlify, photos
+- [Setup & deployment](docs/setup-and-deployment.md): configuration, email/SMS, Netlify, photos, reviews
+- [Image credits](docs/image-credits.md): every third-party photo, its license and changes made
 
 ## Launch checklist
 
@@ -64,3 +69,4 @@ docs/               Brand, UI, UX, content and setup guides
 - [ ] Privacy notice reviewed by the owner
 - [ ] *(Optional)* Twilio configured and registered
 - [ ] *(When available)* Original project photos added
+- [ ] *(When available)* First real customer reviews added with permission; Google review link in `content/reviews.json`

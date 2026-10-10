@@ -12,15 +12,84 @@ const serviceCard = (s, art) => `
   <div class="card-body"><h3>${esc(s.title)}</h3><p>${esc(s.summary)}</p></div>
 </a>`;
 
-const styleCard = (g, art, { link = false } = {}) => {
-  const label = g.kind === "project" ? "Completed project" : "Style reference";
-  const inner = `
-  <div class="card-media">${media(g, { alt: g.kind === "project" ? g.photo?.alt : `Illustration of a ${g.title.toLowerCase()} landscape style`, art })}<span class="tag">${label}</span></div>
-  <div class="card-body"><h3>${esc(g.title)}</h3><p>${esc(g.description)}</p>${g.plants?.length ? `<ul class="chips" aria-label="Plants often used">${g.plants.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}</div>`;
-  return link
-    ? `<a class="card" href="/services-projects/#inspiration">${inner}</a>`
-    : `<article class="card" id="style-${esc(g.id)}">${inner}</article>`;
+// ---------------------------------------------------------------- Gallery
+export const KIND_LABELS = { inspiration: "Landscape design inspiration", project: "Completed project" };
+const GALLERY_SIZES = "(min-width: 72em) 370px, (min-width: 40em) 45vw, 100vw";
+
+const creditLine = (c) =>
+  c
+    ? `<p class="credit">Photo: ${esc(c.author)} · <a href="${esc(c.licenseUrl)}" rel="license noopener">${esc(c.license)}</a> · <a href="${esc(c.sourceUrl)}" rel="noopener">${esc(c.source)}</a></p>`
+    : "";
+
+const galleryCard = (g, art) => `
+<figure class="card gallery-card" id="gallery-${esc(g.id)}">
+  <div class="card-media">${media(g, { art, sizes: GALLERY_SIZES })}<span class="tag">${KIND_LABELS[g.kind]}</span></div>
+  <figcaption class="card-body">
+    <span class="card-eyebrow">${esc(g.category)}</span>
+    <h3>${esc(g.title)}</h3>
+    <p>${esc(g.caption)}</p>
+    ${g.place ? `<p class="place">Photographed at ${esc(g.place)}</p>` : ""}
+    ${creditLine(g.credit)}
+  </figcaption>
+</figure>`;
+
+function inspirationMosaic(items, art) {
+  const credits = [...new Map(items.filter((g) => g.credit).map((g) => [g.credit.author, g.credit])).values()];
+  return `
+<div class="mosaic">
+  ${items
+    .map(
+      (g, i) => `<a class="mosaic-item${i === 0 ? " mosaic-item--lead" : ""}" href="/services-projects/#gallery-${esc(g.id)}">
+    ${media(g, { art, sizes: i === 0 ? "(min-width: 56em) 560px, 100vw" : "(min-width: 56em) 280px, 50vw" })}
+    <span class="mosaic-label"><span class="card-eyebrow">${esc(g.category)}</span>${esc(g.title)}</span>
+  </a>`
+    )
+    .join("")}
+</div>
+${credits.length ? `<p class="credit mosaic-credit">${KIND_LABELS.inspiration}: photos of public gardens, not our projects. Photos by ${credits
+    .map((c) => `${esc(c.author)} (<a href="${esc(c.licenseUrl)}" rel="license noopener">${esc(c.license)}</a>)`)
+    .join(", ")} via Wikimedia Commons. <a href="/services-projects/#inspiration">Full credits</a>.</p>` : ""}`;
+}
+
+// ---------------------------------------------------------------- Reviews
+const star = (filled) =>
+  `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.5 5.2 5.7.8-4.1 4 1 5.6L10 14.7l-5.1 2.7 1-5.6-4.1-4 5.7-.8z" fill="${filled ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+
+const reviewCard = (r) => {
+  const meta = [
+    r.location ? esc(r.location) : "",
+    r.date ? `<time datetime="${r.date.iso}">${esc(r.date.label)}</time>` : "",
+    r.source ? (r.sourceUrl ? `<a href="${esc(r.sourceUrl)}" rel="noopener">${esc(r.source)} review</a>` : `${esc(r.source)}`) : "",
+  ].filter(Boolean);
+  return `
+<figure class="review${r.sample ? " review--sample" : ""}">
+  ${r.sample ? `<p class="sample-flag">Sample for development preview only. Not a real review.</p>` : ""}
+  <svg class="review-leaf" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34C6 18 16 7 34 6c0 18-10 28-26 28" fill="currentColor"/><path d="M6 34L22 18" stroke="#FBFAF6" stroke-width="1.5" stroke-linecap="round"/></svg>
+  ${r.stars ? `<p class="stars" role="img" aria-label="Rated ${r.stars} out of 5 on Google">${[1, 2, 3, 4, 5].map((n) => star(n <= r.stars)).join("")}</p>` : ""}
+  <blockquote><p>${esc(r.text)}</p></blockquote>
+  <figcaption><span class="review-name">${esc(r.name)}</span>${meta.length ? `<span class="review-meta">${meta.join(" · ")}</span>` : ""}</figcaption>
+</figure>`;
 };
+
+/** Renders nothing at all when there are no publishable reviews and no Google review link. */
+export function reviewsSection({ items = [], googleReviewUrl = "" } = {}) {
+  const ask = googleReviewUrl
+    ? `<div class="review-ask"><p><strong>Enjoyed working with us?</strong> Share your experience.</p><a class="btn btn-secondary" href="${esc(googleReviewUrl)}" rel="noopener" target="_blank">Leave a Google review<span class="visually-hidden"> (opens in a new tab)</span></a></div>`
+    : "";
+  if (!items.length && !ask) return "";
+  if (!items.length) return `<section class="section section--tight" aria-label="Customer reviews"><div class="container">${ask}</div></section>`;
+  return `
+<section class="section section--ivory" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">In their words</span>
+      <h2 id="reviews-title">Kind words from our customers</h2>
+    </div>
+    <div class="reviews">${items.map(reviewCard).join("")}</div>
+    ${ask}
+  </div>
+</section>`;
+}
 
 const plantCard = (p, art, { compact = false } = {}) => `
 <article class="card plant-card" id="${esc(p.id)}">
@@ -53,7 +122,7 @@ const faq = (items) => `<div class="faq">${items
   .join("")}</div>`;
 
 // ---------------------------------------------------------------- Home
-export function home({ site, services, gallery, plants, art }) {
+export function home({ site, services, gallery, plants, reviews, art }) {
   const featured = plants.items.filter((p) => p.featured).slice(0, 3);
   return {
     path: "/",
@@ -112,10 +181,10 @@ export function home({ site, services, gallery, plants, art }) {
     <div class="section-head">
       <span class="eyebrow">Design inspiration</span>
       <h2 id="styles-title">Find the style that feels like home</h2>
-      <p class="lede">A few of the landscape styles we love to work in. Mix them, adapt them, or bring your own idea.</p>
+      <p class="lede">Ideas from gardens around South Florida, from clean modern lines to lush tropical layers. Mix them, adapt them, or bring your own.</p>
     </div>
-    <div class="grid grid--3">${gallery.items.slice(0, 6).map((g) => styleCard(g, art, { link: true })).join("")}</div>
-    <div class="section-foot"><a class="btn btn-secondary" href="/services-projects/#inspiration">Explore styles &amp; services ${icons.arrow}</a></div>
+    ${inspirationMosaic(gallery.items.filter((g) => g.featured).slice(0, 4), art)}
+    <div class="section-foot"><a class="btn btn-secondary" href="/services-projects/#inspiration">Explore the inspiration gallery ${icons.arrow}</a></div>
   </div>
 </section>
 
@@ -146,17 +215,19 @@ export function home({ site, services, gallery, plants, art }) {
     <div class="section-foot"><a class="text-link" href="/south-florida-plants/">Visit the South Florida plant guide ${icons.arrow}</a></div>
   </div>
 </section>
+${reviewsSection(reviews)}
 ${ctaBand()}`,
   };
 }
 
 // ---------------------------------------------------------------- Services & Projects
-export function servicesProjects({ services, gallery, art }) {
+export function servicesProjects({ site, services, gallery, art }) {
+  const hasProjects = gallery.items.some((g) => g.kind === "project");
   return {
     path: "/services-projects/",
     title: "Services & project inspiration",
     description:
-      "Landscape design, garden refreshes, tropical landscaping and plant installation in Broward County, FL, plus style inspiration from modern tropical to natural Florida gardens.",
+      "Landscape design, garden refreshes, tropical landscaping and plant installation in Broward County, FL, plus a landscape design inspiration gallery from modern tropical to Florida-friendly gardens.",
     body: `
 <header class="page-header">
   <div class="container">
@@ -209,12 +280,19 @@ export function servicesProjects({ services, gallery, art }) {
 <section class="section" id="inspiration" aria-labelledby="inspiration-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Project inspiration</span>
+      <span class="eyebrow">${hasProjects ? "Projects &amp; inspiration" : "Landscape design inspiration"}</span>
       <h2 id="inspiration-title">Landscape styles to explore</h2>
-      <p class="lede">Use these as a starting point for your own garden. Most yards end up as a blend.</p>
+      <p class="lede">Different directions a South Florida garden can take. Use them as a starting point; most yards end up as a blend.</p>
     </div>
-    <p class="notice" style="margin-bottom:var(--space-6)">${icons.info}<span>These are illustrated style references, not photos of completed client projects. As our portfolio grows, real project photos will appear here.</span></p>
-    <div class="grid grid--3">${gallery.items.map((g) => styleCard(g, art)).join("")}</div>
+    <p class="notice" style="margin-bottom:var(--space-6)">${icons.info}<span>Photos labeled <strong>${KIND_LABELS.inspiration}</strong> were taken at public gardens and other places in Florida by independent photographers. They're here to spark ideas and are not projects completed by ${esc(site.name)}. Credits appear under each photo.</span></p>
+    <div class="grid grid--3 gallery">${gallery.items.map((g) => galleryCard(g, art)).join("")}</div>
+    <div class="inspo-cta">
+      <div class="stack">
+        <h3>Inspired by something you see? Let's design something just for you.</h3>
+        <p class="muted">Tell us which looks you like and a little about your yard. We'll help you adapt the idea to your space, your budget and South Florida's conditions.</p>
+      </div>
+      <a class="btn btn-primary" href="${CTA_HREF}">Start Your Project ${icons.arrow}</a>
+    </div>
   </div>
 </section>
 
@@ -230,7 +308,7 @@ export function servicesProjects({ services, gallery, art }) {
     ])}
   </div>
 </section>
-${ctaBand({ title: "Seen a style you love? Let's make it yours.", text: "Tell us about your property and the look you're drawn to. We'll help you adapt it to your space and South Florida's conditions." })}`,
+${ctaBand()}`,
   };
 }
 

@@ -42,19 +42,33 @@ Use natural light, real and healthy plants, architectural context, and believabl
 
 **Sourcing order:**
 1. The owner's own photos of their own work.
-2. Properly licensed photos, with license terms kept on file.
-3. The built-in illustrations (current default).
+2. Properly licensed photos (currently 8 from Wikimedia Commons), recorded in [image-credits.md](image-credits.md).
+3. The built-in illustrations (used for service cards and plant profiles).
 
 Never hotlink or scrape images from other sites. Get permission before showing a client's home, and avoid house numbers, license plates and faces.
 
 ## Project portfolio representation
 
-| Type | `kind` in `gallery.json` | Label shown |
-|---|---|---|
-| Illustration or style reference | `style` | "Style reference" |
-| The owner's real, completed work | `project` | "Completed project" |
+| Type | `kind` in `gallery.json` | Label shown | Requirements |
+|---|---|---|---|
+| Third-party photo shown for ideas | `inspiration` | "Landscape design inspiration" | Full credit; listed in image-credits.md |
+| The owner's real, completed work | `project` | "Completed project" | Real job, homeowner's permission |
 
-Never present inspiration photos, third-party images, or AI-generated images as completed projects. Don't create before/after pairs unless both photos are of the same real job.
+Gallery captions describe the **design ideas visible in the photo** (layout, materials, plant structure). "Photographed at…" names where the photographer took it, only when the source states it. Don't name plant species you can't confirm from the photo or its source.
+
+Never present inspiration photos, third-party images, or AI-generated images as completed projects. Don't invent locations or customer results, and don't create before/after pairs unless both photos are of the same real job.
+
+## Customer reviews
+
+- Publish only real reviews from real customers, with their permission (`verified` and `permission` both `true`).
+- Show first name and last initial only. Add a location or date only if the customer is comfortable with it.
+- Don't rewrite a review's meaning. Fix obvious typos only.
+- Show star ratings only for reviews that can be checked: Google reviews with a link.
+- Never use sample, placeholder, paraphrased or "representative" reviews on the live site. Samples belong only in `content/reviews.sample.json` for local previews.
+- Don't add reviews or ratings to the site's structured data.
+- Remove a review promptly if the customer asks.
+
+Setup steps: [Adding customer reviews](setup-and-deployment.md#adding-customer-reviews).
 
 ## SEO content principles
 
@@ -71,7 +85,7 @@ Never write, imply or put in structured data:
 - Years in business, number of clients or projects
 - Awards, rankings, "#1", "best in"
 - Licenses, certifications, insurance or bonding
-- Reviews, testimonials, star ratings
+- Reviews, testimonials or star ratings that aren't real, verified and shared with permission
 - A street address or storefront
 - Completed projects that didn't happen
 

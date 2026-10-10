@@ -92,5 +92,6 @@ See [content guidelines](content-guidelines.md#photography-standards). In short:
 - [ ] Copy makes no unverified claims.
 - [ ] Colors come from tokens, not one-off hex values.
 - [ ] One primary (green) button per view; secondary actions use the outline style.
-- [ ] Images are labeled honestly (style reference vs. completed project).
+- [ ] Images are labeled honestly ("Landscape design inspiration" vs. "Completed project") and third-party photos are credited.
+- [ ] Testimonials are real, verified and shared with permission; never samples or paraphrases.
 - [ ] The CTA always reads "Start Your Project" and goes to `/contact/#inquiry`.

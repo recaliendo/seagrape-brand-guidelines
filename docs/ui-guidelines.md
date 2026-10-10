@@ -54,7 +54,12 @@ Every page has exactly one H1 (enforced by tests), and headings don't skip level
 | Light button | `.btn.btn-light` | On the dark CTA band only. |
 | Text link | `.text-link` | Underlined arrow link for "see more". |
 | Card | `.card` (`a.card` when the whole card links) | White, 1px stone border, 20px radius. Hover adds a soft shadow and a 3% image zoom. |
-| Style card tag | `.tag` | "Style reference" or "Completed project" label on gallery images. |
+| Gallery card | `figure.card.gallery-card` | Photo with a `.tag` label ("Landscape design inspiration" or "Completed project"), category eyebrow, title, caption, "Photographed at" line and `.credit` line. |
+| Inspiration mosaic | `.mosaic` | Home preview of up to 4 featured photos: one large lead tile plus three; labels sit on an ivory chip so text never depends on the photo for contrast. Credits line below. |
+| Inspiration CTA | `.inspo-cta` | Light sage panel after the gallery linking to the inquiry form. |
+| Review card | `figure.review` | White card, serif italic quote, terracotta quote mark, faint leaf accent in the corner, name + optional location, date and source. Optional `.stars` (Google-linked reviews only). Static grid, no carousel. |
+| Review prompt | `.review-ask` | "Enjoyed working with us?" with a Google review button; shown only when a Google link is configured. |
+| Sample review | `.review--sample` + `.sample-flag` | Dashed terracotta border and a red "not a real review" label. Development preview only. |
 | Plant card | `.card.plant-card` | Native badge, facts list, `<details>` for care tips. |
 | Steps | `ol.steps` | Real sequences only; numbers come from CSS counters. |
 | FAQ | `.faq` + `<details>` | Keyboard accessible without JavaScript. |
@@ -79,6 +84,7 @@ Every page has exactly one H1 (enforced by tests), and headings don't skip level
 
 - Every `<img>` has `width` and `height` (no layout shift), `alt` text, and `loading="lazy"` except the hero (`fetchpriority="high"` and preloaded).
 - Aspect ratios: hero 4:5, service and gallery 4:3, plants 3:2. Use `object-fit: cover`.
+- Photos ship as WebP at 800px and 480px wide with `srcset`/`sizes`, so phones download the small file. Keep each file under 200 KB (a test enforces this for gallery photos).
 - Decorative images next to a heading that says the same thing use `alt=""`.
 
 ## Interactive states
